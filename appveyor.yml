@@ -1,0 +1,9 @@
+version: 0.0.{build}
+skip_tags: true
+build:
+  project: Common.sln
+  verbosity: minimal
+image: Visual Studio 2017
+configuration: Debug
+before_build:
+  nuget restore Common.sln
