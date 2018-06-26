@@ -9,20 +9,31 @@ namespace Common
         {
             Button btn = (Button)sender;
             bool checkState = false;
+            bool parseRet = false;
+            int btnTag = 0;
 
             try
             {
-                switch (btn.Tag)
+                parseRet = int.TryParse(btn.Tag.ToString(), out btnTag);
+
+                if (parseRet)
                 {
-                    case 1:
-                        checkState = true;
-                        break;
-                    case 0:
-                        checkState = false;
-                        break;
-                    default:
-                        checkState = false;
-                        break;
+                    switch (btnTag)
+                    {
+                        case 1:
+                            checkState = true;
+                            break;
+                        case 0:
+                            checkState = false;
+                            break;
+                        default:
+                            checkState = false;
+                            break;
+                    }
+                }
+                else
+                {
+                    checkState = false;
                 }
 
                 if (dataGridView.RowCount > 0)
