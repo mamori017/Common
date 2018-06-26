@@ -9,7 +9,7 @@ namespace Common
         /// <summary>
         /// ShowNotify
         /// </summary>
-        public static void ShowNotify(String strLine_1, string strLine_2, Boolean blnExeFlg, string strProductName)
+        public static void ShowNotify(String strLine_1, string strLine_2, string strProductName)
         {
             try
             {
@@ -20,18 +20,8 @@ namespace Common
                 var texts = xml.GetElementsByTagName("text");
                 var toast = new ToastNotification(xml);
                 var notify = ToastNotificationManager.CreateToastNotifier(strProductName);
-                string filePath = "";
 
-                if(blnExeFlg == true)
-                {
-                    filePath = Define.NotifyIconPath;
-                }
-                else
-                {
-                    filePath = Define.NotifyStopIconPath;
-                }
-
-                src.InnerText = "file:///" + Path.GetFullPath(filePath);
+                src.InnerText = "file:///" + Path.GetFullPath(Properties.Settings.Default.NotifyIconPath);
 
                 texts[0].AppendChild(xml.CreateTextNode(strLine_1));
                 texts[1].AppendChild(xml.CreateTextNode(strLine_2));
@@ -40,7 +30,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                Log.ExceptionOutput(ex, Define.ErrLogPath);
+                Log.ExceptionOutput(ex, Properties.Settings.Default.LogFilePath);
             }
             finally
             {

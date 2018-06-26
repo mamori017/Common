@@ -67,5 +67,14 @@ namespace Common.Properties {
                 return ((string)(this["SqlServerPassword"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string NotifyIconPath {
+            get {
+                return ((string)(this["NotifyIconPath"]));
+            }
+        }
     }
 }
