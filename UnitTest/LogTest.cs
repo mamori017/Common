@@ -1,20 +1,14 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Common;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace UnitTest
+namespace Common.Tests
 {
     [TestClass]
     public class LogTest
     {
-
         [TestMethod]
-        public void TestMethod1()
+        public void ExceptionOutputTest()
         {
             string strFile = @".\errorLog.txt";
 

@@ -21,7 +21,10 @@ namespace Common
                 var toast = new ToastNotification(xml);
                 var notify = ToastNotificationManager.CreateToastNotifier(strProductName);
 
-                src.InnerText = "file:///" + Path.GetFullPath(Properties.Settings.Default.NotifyIconPath);
+                if (File.Exists(Properties.Settings.Default.NotifyIconPath))
+                {
+                    src.InnerText = "file:///" + Path.GetFullPath(Properties.Settings.Default.NotifyIconPath);
+                }
 
                 texts[0].AppendChild(xml.CreateTextNode(strLine_1));
                 texts[1].AppendChild(xml.CreateTextNode(strLine_2));
@@ -30,7 +33,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                Log.ExceptionOutput(ex, Properties.Settings.Default.LogFilePath);
+                throw ex;
             }
             finally
             {

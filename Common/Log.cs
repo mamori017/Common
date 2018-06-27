@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Common
 {
-    public  class Log
+    public class Log
     {
         /// <summary>
         /// ExceptionOutput

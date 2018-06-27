@@ -202,10 +202,6 @@ namespace Common
             {
                 throw ex;
             }
-            finally
-            {
-                //Dispose
-            }
         }
     }
 }
