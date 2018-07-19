@@ -2,20 +2,17 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
-using System.Net;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Common
 {
-    public class Json
+    public static class Json
     {
         /// <summary>
         /// GetJson
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public  String GetJson(String strUrl)
+        public static String GetJson(String strUrl)
         {
             try
             {

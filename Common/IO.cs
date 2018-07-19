@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Common
 {
-    public class IO
+    public static class IO
     {
         /// <summary>
         /// DirectoryCheck
         /// </summary>
-        public bool DirectoryCheck(string directoryPath, bool makeDir = false)
+        public static bool DirectoryCheck(string directoryPath, bool makeDir = false)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace Common
         /// </summary>
         /// <param name="outputString"></param>
         /// <returns></returns>
-        public bool CreateTextFile(string filePath, string fileName, string outputString, EncodeType encode = EncodeType.utf8)
+        public static bool CreateTextFile(string filePath, string fileName, string outputString, bool append = true, EncodeType encode = EncodeType.utf8)
         {
 
             String outputFilePath = "";
@@ -55,18 +55,15 @@ namespace Common
 
             try
             {
+                // Set text file full path
                 if (filePath.Substring(filePath.Length - 1) != "\\")
                 {
                     filePath  += filePath + "\\";
                 }
 
                 outputFilePath = filePath + fileName; 
-
-                if (File.Exists(outputFilePath))
-                {
-                    return false;
-                }
                 
+                // Encode type
                 if (encode == EncodeType.sjis)
                 {
                     objEncoding = Encoding.GetEncoding(932);
@@ -76,7 +73,8 @@ namespace Common
                     objEncoding = Encoding.UTF8;
                 }
 
-                objWriter = new StreamWriter(outputFilePath, true, objEncoding);
+                // Stream
+                objWriter = new StreamWriter(outputFilePath, append, objEncoding);
 
                 objWriter.Write(outputString);
 
