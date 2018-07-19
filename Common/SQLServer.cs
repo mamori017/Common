@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace Common
 {
-    class SQLServer
+    public class SQLServer
     {
         private SqlConnection Conn = null;
         private SqlTransaction Trans = null;
@@ -201,10 +201,6 @@ namespace Common
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                //Dispose
             }
         }
     }

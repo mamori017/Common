@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+
 namespace Common
 {
-    class DataGridViewControl
+    public class DataGridViewControl
     {
         public void ChangeCheckState(Object sender,DataGridView dataGridView, int cellPos = 0)
         {
