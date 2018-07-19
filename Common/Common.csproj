@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataGridViewControl.cs" />
+    <Compile Include="DateEdit.cs" />
+    <Compile Include="IO.cs" />
     <Compile Include="Json.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Notification.cs" />
