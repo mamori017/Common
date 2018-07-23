@@ -18,7 +18,6 @@ namespace Common
                 var images = xml.GetElementsByTagName("image");
                 var src = images[0].Attributes.GetNamedItem("src");
                 var texts = xml.GetElementsByTagName("text");
-                var toast = new ToastNotification(xml);
                 var notify = ToastNotificationManager.CreateToastNotifier(strProductName);
 
                 if (File.Exists(iconPath))
@@ -34,10 +33,6 @@ namespace Common
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                GC.Collect();
             }
         }
 

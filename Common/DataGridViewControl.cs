@@ -6,7 +6,7 @@ namespace Common
 {
     public class DataGridViewControl
     {
-        public void ChangeCheckState(Object sender,DataGridView dataGridView, int cellPos = 0)
+        public static void ChangeCheckState(Object sender,DataGridView dataGridView, int cellPos = 0)
         {
             Button btn = (Button)sender;
             bool checkState = false;
@@ -25,8 +25,6 @@ namespace Common
                             checkState = true;
                             break;
                         case 0:
-                            checkState = false;
-                            break;
                         default:
                             checkState = false;
                             break;
@@ -51,7 +49,7 @@ namespace Common
             }
         }
 
-        public bool CheckboxSelectState(DataGridView dataGridView, int cellPos = 0)
+        public static bool CheckboxSelectState(DataGridView dataGridView, int cellPos = 0)
         {
             try
             {
@@ -76,7 +74,7 @@ namespace Common
             }
         }
 
-        public string[] GetCheckboxSelectValue(DataGridView dataGridView, int cellPos = 0)
+        public static string[] GetCheckboxSelectValue(DataGridView dataGridView, int cellPos = 0)
         {
             String[] strId = null;
             int intCnt = 0;
@@ -102,7 +100,7 @@ namespace Common
             }
         }
 
-        public void ChangeReadOnlyCell(DataGridView dataGridView, bool firstCellTarget = false)
+        public static void ChangeReadOnlyCell(DataGridView dataGridView, bool firstCellTarget = false)
         {
             try
             {
@@ -127,7 +125,7 @@ namespace Common
             }
         }
 
-        public void FilterViewChange(DataGridView dataGridView, String filterQuery)
+        public static void FilterViewChange(DataGridView dataGridView, String filterQuery)
         {
             BindingSource objBind;
             DataTable objData;
