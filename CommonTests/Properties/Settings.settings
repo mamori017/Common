@@ -41,5 +41,14 @@
     <Setting Name="AppveyorSqlServerPw" Type="System.String" Scope="User">
       <Value Profile="(Default)">Password12!</Value>
     </Setting>
+    <Setting Name="SqlServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SqlServerUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SqlServerPw" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

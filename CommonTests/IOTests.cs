@@ -124,7 +124,7 @@ namespace Common.Tests
 
         [TestMethod()]
         [ExpectedException(typeof(System.IO.IOException))]
-        public void tetet()
+        public void CreateTextFileIOExceptionTest()
         {
             StreamReader reader = null;
 

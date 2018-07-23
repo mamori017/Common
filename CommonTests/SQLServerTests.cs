@@ -14,60 +14,76 @@ namespace Common.Tests
     [TestClass()]
     public class SQLServerTests
     {
-        [TestMethod()]
-        public void ConnectTest()
+        List<string> arrAppveyorIp = new List<string> { "74.205.54.20", "104.197.110.30", "104.197.145.181", "146.148.85.29", "67.225.139.254", "67.225.138.82", "67.225.139.144" };
+
+        private SQLServer TestEnvJudge()
         {
-            //IPアドレス
-            string addr_ip;
+            SQLServer objDB = null;
 
             try
             {
-                //ホスト名を取得
-                string hostname = System.Net.Dns.GetHostName();
+                string hostname = Dns.GetHostName();
+                IPAddress[] addr_arr = Dns.GetHostAddresses(hostname);
 
-                //ホスト名からIPアドレスを取得
-                System.Net.IPAddress[] addr_arr = System.Net.Dns.GetHostAddresses(hostname);
-
-                //探す
-                addr_ip = "";
-                foreach (System.Net.IPAddress addr in addr_arr)
+                foreach (IPAddress addr in addr_arr)
                 {
                     string addr_str = addr.ToString();
-
-                    //IPv4 && localhostでない
-                    if (addr_str.IndexOf(".") > 0 && !addr_str.StartsWith("127."))
+                    if (arrAppveyorIp.IndexOf(addr.ToString()) < 0)
                     {
-                        addr_ip = addr_str;
-                        break;
+                        objDB = new SQLServer(CommonTests.Properties.Settings.Default.SqlServerName, "", CommonTests.Properties.Settings.Default.SqlServerUser, CommonTests.Properties.Settings.Default.SqlServerPw);
+                    }
+                    else
+                    {
+                        objDB = new SQLServer(CommonTests.Properties.Settings.Default.AppveyorSqlServerName, "", CommonTests.Properties.Settings.Default.AppveyorSqlServerUser, CommonTests.Properties.Settings.Default.AppveyorSqlServerPw);
                     }
                 }
+                return objDB;
             }
             catch (Exception)
             {
-                addr_ip = "";
+                throw;
             }
-
-            if (addr_ip=="")
+        }
+        
+        [TestMethod()]
+        public void ConnectTest()
+        {
+            SQLServer objDB = null;
+            try
             {
-                SQLServer objDB = new SQLServer(CommonTests.Properties.Settings.Default.AppveyorSqlServerName,
-                                                   "",
-                                                   CommonTests.Properties.Settings.Default.AppveyorSqlServerUser,
-                                                   CommonTests.Properties.Settings.Default.AppveyorSqlServerPw);
-
-                Assert.AreEqual(true, objDB.Connect());
+                objDB = TestEnvJudge();
+                if (objDB != null)
+                {
+                    Assert.AreEqual(true, objDB.Connect());
+                }
             }
-            else
+            finally
             {
-                Assert.Fail();
+                objDB.Disconnect();
+                objDB = null;
             }
-
 
         }
 
-//        [TestMethod()]
-//        public void DisconnectTest()
-//        {
-//            Assert.AreEqual(true, objDB.Disconnect());
-//        }
+        [TestMethod()]
+        public void DisconnectTest()
+        {
+            SQLServer objDB = null;
+            try
+            {
+                objDB = TestEnvJudge();
+                if (objDB != null)
+                {
+                    if (objDB.Connect())
+                    {
+                        Assert.AreEqual(true, objDB.Disconnect());
+                    }
+                }
+            }
+            finally
+            {
+                objDB = null;
+            }
+        }
     }
 }
