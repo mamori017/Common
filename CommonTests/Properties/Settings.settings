@@ -32,5 +32,14 @@
     <Setting Name="ExFileName" Type="System.String" Scope="User">
       <Value Profile="(Default)">ErrorTest.log</Value>
     </Setting>
+    <Setting Name="AppveyorSqlServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(local)\\SQL2014</Value>
+    </Setting>
+    <Setting Name="AppveyorSqlServerUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sa</Value>
+    </Setting>
+    <Setting Name="AppveyorSqlServerPw" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Password12!</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

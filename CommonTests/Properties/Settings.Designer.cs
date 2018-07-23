@@ -142,5 +142,41 @@ namespace CommonTests.Properties {
                 this["ExFileName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("(local)\\\\SQL2014")]
+        public string AppveyorSqlServerName {
+            get {
+                return ((string)(this["AppveyorSqlServerName"]));
+            }
+            set {
+                this["AppveyorSqlServerName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("sa")]
+        public string AppveyorSqlServerUser {
+            get {
+                return ((string)(this["AppveyorSqlServerUser"]));
+            }
+            set {
+                this["AppveyorSqlServerUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Password12!")]
+        public string AppveyorSqlServerPw {
+            get {
+                return ((string)(this["AppveyorSqlServerPw"]));
+            }
+            set {
+                this["AppveyorSqlServerPw"] = value;
+            }
+        }
     }
 }

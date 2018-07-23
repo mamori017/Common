@@ -6,9 +6,9 @@ namespace Common
 {
     public class SQLServer
     {
-        private SqlConnection Conn = null;
-        private SqlTransaction Trans = null;
-        private SqlCommand Cmd = null;
+        public SqlConnection Conn { get; private set; }
+        public SqlTransaction Trans { get; private set; }
+        public SqlCommand Cmd { get; private set; }
         public string ServerName { get; private set; }
         public string UserId { get; private set; }
         public string Catalog { get; private set; }
