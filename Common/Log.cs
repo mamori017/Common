@@ -5,13 +5,13 @@ namespace Common
     public static class Log
     {
         /// <summary>
-        /// ExceptionOutput
+        /// Output
         /// </summary>
         public static void Output(String outputDetail, String filePath, String fileName)
         {
             if (IO.DirectoryCheck(filePath, true))
             {
-                IO.CreateTextFile(filePath, fileName, outputDetail);
+                IO.CreateTextFile(filePath, fileName, outputDetail, true, IO.EncodeType.utf8);
             }
         }
 
@@ -29,7 +29,7 @@ namespace Common
 
             if (IO.DirectoryCheck(filePath, true))
             {
-                IO.CreateTextFile(filePath, fileName, outputDetail);
+                IO.CreateTextFile(filePath, fileName, outputDetail, true, IO.EncodeType.utf8);
             }
         }
     }

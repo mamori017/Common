@@ -94,5 +94,53 @@ namespace CommonTests.Properties {
                 this["IODirectoryPathExt"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Log")]
+        public string LogFilePath {
+            get {
+                return ((string)(this["LogFilePath"]));
+            }
+            set {
+                this["LogFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LogTest.log")]
+        public string LogFileName {
+            get {
+                return ((string)(this["LogFileName"]));
+            }
+            set {
+                this["LogFileName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\ExTest")]
+        public string ExFilePath {
+            get {
+                return ((string)(this["ExFilePath"]));
+            }
+            set {
+                this["ExFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ErrorTest.log")]
+        public string ExFileName {
+            get {
+                return ((string)(this["ExFileName"]));
+            }
+            set {
+                this["ExFileName"] = value;
+            }
+        }
     }
 }
