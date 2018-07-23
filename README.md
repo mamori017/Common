@@ -1,5 +1,6 @@
 # Common
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1dddbbb6955146ce955a54b6268c1f91)](https://app.codacy.com/app/mamori017/Common?utm_source=github.com&utm_medium=referral&utm_content=mamori017/Common&utm_campaign=badger)
 [![Build status](https://ci.appveyor.com/api/projects/status/1yi6bho565k8xk6e?svg=true)](https://ci.appveyor.com/project/mamori017/common)
 [![codecov](https://codecov.io/gh/mamori017/Common/branch/master/graph/badge.svg)](https://codecov.io/gh/mamori017/Common)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mamori017/common.svg)
