@@ -1,5 +1,8 @@
 version: 0.0.{build}
 skip_tags: true
+
+services:
+  - mssql2014
 build:
   project: Common.sln
   verbosity: minimal

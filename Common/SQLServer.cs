@@ -18,7 +18,7 @@ namespace Common
         /// <summary>
         /// Initialize
         /// </summary>
-        SQLServer(String SqlServerName, String SqlServerCatalog, String SqlServerUser, String SqlServerPassword)
+        public SQLServer(String SqlServerName, String SqlServerCatalog, String SqlServerUser, String SqlServerPassword)
         {
             ServerName = SqlServerName;
             Catalog = SqlServerCatalog;
