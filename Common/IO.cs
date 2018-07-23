@@ -55,10 +55,12 @@ namespace Common
 
             try
             {
+                DirectoryCheck(filePath, true);
+
                 // Set text file full path
                 if (filePath.Substring(filePath.Length - 1) != "\\")
                 {
-                    filePath  += filePath + "\\";
+                    filePath  += "\\";
                 }
 
                 outputFilePath = filePath + fileName; 

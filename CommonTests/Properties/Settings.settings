@@ -2,8 +2,23 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CommonTests.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="NotifierAppID" Type="System.String" Scope="User">
+    <Setting Name="NotificationAppID" Type="System.String" Scope="User">
       <Value Profile="(Default)">{D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27}\WindowsPowerShell\v1.0\powershell.exe</Value>
+    </Setting>
+    <Setting Name="NotificationIconPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\img\favicon.ico</Value>
+    </Setting>
+    <Setting Name="IODirectoryPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\IOTest</Value>
+    </Setting>
+    <Setting Name="IOFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\IOTest</Value>
+    </Setting>
+    <Setting Name="IOFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">IOTest.txt</Value>
+    </Setting>
+    <Setting Name="IODirectoryPathExt" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\IOTest\</Value>
     </Setting>
   </Settings>
 </SettingsFile>

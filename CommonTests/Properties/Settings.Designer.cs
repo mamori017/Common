@@ -26,12 +26,72 @@ namespace CommonTests.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("{D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27}\\WindowsPowerShell\\v1.0\\powershell.exe")]
-        public string NotifierAppID {
+        public string NotificationAppID {
             get {
-                return ((string)(this["NotifierAppID"]));
+                return ((string)(this["NotificationAppID"]));
             }
             set {
-                this["NotifierAppID"] = value;
+                this["NotificationAppID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\img\\favicon.ico")]
+        public string NotificationIconPath {
+            get {
+                return ((string)(this["NotificationIconPath"]));
+            }
+            set {
+                this["NotificationIconPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\IOTest")]
+        public string IODirectoryPath {
+            get {
+                return ((string)(this["IODirectoryPath"]));
+            }
+            set {
+                this["IODirectoryPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\IOTest")]
+        public string IOFilePath {
+            get {
+                return ((string)(this["IOFilePath"]));
+            }
+            set {
+                this["IOFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("IOTest.txt")]
+        public string IOFileName {
+            get {
+                return ((string)(this["IOFileName"]));
+            }
+            set {
+                this["IOFileName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\IOTest\\")]
+        public string IODirectoryPathExt {
+            get {
+                return ((string)(this["IODirectoryPathExt"]));
+            }
+            set {
+                this["IODirectoryPathExt"] = value;
             }
         }
     }

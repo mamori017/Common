@@ -18,12 +18,12 @@ namespace Common
         /// <summary>
         /// Initialize
         /// </summary>
-        SQLServer()
+        SQLServer(String SqlServerName, String SqlServerCatalog, String SqlServerUser, String SqlServerPassword)
         {
-            ServerName = Properties.Settings.Default.SqlServerName;
-            Catalog = Properties.Settings.Default.SqlServerCatalog;
-            UserId = Properties.Settings.Default.SqlServerUser;
-            Password = Properties.Settings.Default.SqlServerPassword;
+            ServerName = SqlServerName;
+            Catalog = SqlServerCatalog;
+            UserId = SqlServerUser;
+            Password = SqlServerPassword;
         }
 
         /// <summary>

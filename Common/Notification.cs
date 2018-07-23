@@ -9,7 +9,7 @@ namespace Common
         /// <summary>
         /// ShowNotify
         /// </summary>
-        public static void ShowNotify(String strLine_1, string strLine_2, string strProductName)
+        public static void ShowNotify(String strLine_1, string strLine_2, string strProductName, string iconPath)
         {
             try
             {
@@ -21,9 +21,9 @@ namespace Common
                 var toast = new ToastNotification(xml);
                 var notify = ToastNotificationManager.CreateToastNotifier(strProductName);
 
-                if (File.Exists(Properties.Settings.Default.NotifyIconPath))
+                if (File.Exists(iconPath))
                 {
-                    src.InnerText = "file:///" + Path.GetFullPath(Properties.Settings.Default.NotifyIconPath);
+                    src.InnerText = "file:///" + Path.GetFullPath(iconPath);
                 }
 
                 texts[0].AppendChild(xml.CreateTextNode(strLine_1));

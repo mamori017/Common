@@ -12,7 +12,7 @@ namespace Common
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static String GetJson(String strUrl)
+        public static object GetJson(String strUrl)
         {
             try
             {
@@ -23,12 +23,15 @@ namespace Common
                 }
                 catch (Exception ex2)
                 {
-                    return ex2.InnerException.Message.ToString();
+                    throw ex2;
                 }
 
                 JObject objJson = JObject.Parse(strJson);
+                var area = JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>>>>(JsonConvert.SerializeObject(objJson, Formatting.Indented));
 
-                return  JsonConvert.SerializeObject(objJson, Formatting.Indented);
+                //object a =  JsonConvert.DeserializeObject<J(JsonConvert.SerializeObject(objJson, Formatting.Indented));
+
+                return area;
             }
             catch (Exception ex)
             {
