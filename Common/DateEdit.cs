@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Common
 {
-    public class DateEdit
+    public static class DateEdit
     {
         /// <summary>
         /// GetWeekStartDate
