@@ -14,33 +14,38 @@ namespace Common.Tests
     [TestClass()]
     public class SQLServerTests
     {
-        List<string> arrAppveyorIp = new List<string> { "74.205.54.20", "104.197.110.30", "104.197.145.181", "146.148.85.29", "67.225.139.254", "67.225.138.82", "67.225.139.144" };
-
         private SQLServer TestEnvJudge()
         {
             SQLServer objDB = null;
 
             try
             {
+                string[] arrAppveyorIp = CommonTests.Properties.Settings.Default.AppveyorBuildEnv.Split(',');
+                var list = new List<string>();
+                list.AddRange(arrAppveyorIp);
+
                 string hostname = Dns.GetHostName();
                 IPAddress[] addr_arr = Dns.GetHostAddresses(hostname);
 
                 foreach (IPAddress addr in addr_arr)
                 {
                     string addr_str = addr.ToString();
-                    if (arrAppveyorIp.IndexOf(addr.ToString()) < 0)
+                    if (list.IndexOf(addr.ToString()) >= 0)
                     {
-                        objDB = new SQLServer(CommonTests.Properties.Settings.Default.SqlServerName, "", CommonTests.Properties.Settings.Default.SqlServerUser, CommonTests.Properties.Settings.Default.SqlServerPw);
+                        objDB = new SQLServer(CommonTests.Properties.Settings.Default.AppveyorSqlServerName, "", CommonTests.Properties.Settings.Default.AppveyorSqlServerUser, CommonTests.Properties.Settings.Default.AppveyorSqlServerPw);
+                        Console.WriteLine("appveyor");
                     }
                     else
                     {
-                        objDB = new SQLServer(CommonTests.Properties.Settings.Default.AppveyorSqlServerName, "", CommonTests.Properties.Settings.Default.AppveyorSqlServerUser, CommonTests.Properties.Settings.Default.AppveyorSqlServerPw);
+                        objDB = new SQLServer(CommonTests.Properties.Settings.Default.SqlServerName, "", CommonTests.Properties.Settings.Default.SqlServerUser, CommonTests.Properties.Settings.Default.SqlServerPw);
+                        Console.WriteLine("local");
                     }
                 }
                 return objDB;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 throw;
             }
         }

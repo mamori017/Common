@@ -1,10 +1,8 @@
 # Common
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1dddbbb6955146ce955a54b6268c1f91)](https://app.codacy.com/app/mamori017/Common?utm_source=github.com&utm_medium=referral&utm_content=mamori017/Common&utm_campaign=badger)
 [![Build status](https://ci.appveyor.com/api/projects/status/1yi6bho565k8xk6e?svg=true)](https://ci.appveyor.com/project/mamori017/common)
 [![codecov](https://codecov.io/gh/mamori017/Common/branch/master/graph/badge.svg)](https://codecov.io/gh/mamori017/Common)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/52f4177cd33543e099b145191b7f515a)](https://www.codacy.com/app/mamori017/Common?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mamori017/Common&amp;utm_campaign=Badge_Grade)
-
 ![GitHub last commit](https://img.shields.io/github/last-commit/mamori017/common.svg)
 ![GitHub tag](https://img.shields.io/github/tag/mamori017/Common.svg)
 [![Release](https://img.shields.io/github/release/mamori017/Common.svg)](https://github.com/mamori017/Common/releases/latest)

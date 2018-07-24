@@ -8,11 +8,11 @@ namespace Common
     public static class Json
     {
         /// <summary>
-        /// GetJson
+        /// GetJsonDictionary
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static object GetJson(String strUrl)
+        public static object GetJsonDictionary(String strUrl)
         {
             try
             {

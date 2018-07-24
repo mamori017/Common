@@ -12,7 +12,7 @@ namespace CommonTests.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.5.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -212,6 +212,19 @@ namespace CommonTests.Properties {
             }
             set {
                 this["SqlServerPw"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("74.205.54.20,104.197.110.30,104.197.145.181,146.148.85.29,67.225.139.254,67.225.1" +
+            "38.82,67.225.139.144")]
+        public string AppveyorBuildEnv {
+            get {
+                return ((string)(this["AppveyorBuildEnv"]));
+            }
+            set {
+                this["AppveyorBuildEnv"] = value;
             }
         }
     }
