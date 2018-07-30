@@ -61,6 +61,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ArrayTests.cs" />
     <Compile Include="DateEditTests.cs" />
     <Compile Include="IOTests.cs" />
     <Compile Include="LogTests.cs" />

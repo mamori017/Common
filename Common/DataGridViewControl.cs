@@ -148,7 +148,7 @@ namespace Common
             }
         }
 
-        public static bool CreateDataGridView(DataTable objDataTable, DataGridView objDataGridView , bool vblnCheckFlg = false, int checkFlgOrdinal = 0)
+        public bool CreateDataGridView(DataTable objDataTable, DataGridView objDataGridView , bool vblnCheckFlg = false, int checkFlgOrdinal = 0)
         {
             DataGridViewCheckBoxColumn objColumn = null;
             try
