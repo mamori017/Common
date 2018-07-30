@@ -40,9 +40,9 @@ namespace Common
                 Cmd = Conn.CreateCommand();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
