@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Common
 {
-    public class CommonArray
+    public static class CommonArray
     {
         public static string[] ArraySortWithExceptDuplication(String[] strArray)
         {
@@ -11,7 +11,7 @@ namespace Common
 
             try
             {
-                System.Array.Sort(strArray);
+                Array.Sort(strArray);
 
                 ArrayList arrayList = new ArrayList(strArray.Length);
 
