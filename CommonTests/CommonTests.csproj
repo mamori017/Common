@@ -64,6 +64,7 @@
     <Compile Include="ArrayTests.cs" />
     <Compile Include="DateEditTests.cs" />
     <Compile Include="IOTests.cs" />
+    <Compile Include="JsonTests.cs" />
     <Compile Include="LogTests.cs" />
     <Compile Include="NotificationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
