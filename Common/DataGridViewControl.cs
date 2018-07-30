@@ -19,14 +19,13 @@ namespace Common
 
                 if (parseRet)
                 {
-                    switch (btnTag)
+                    if(btnTag == 1)
                     {
-                        case 1:
-                            checkState = true;
-                            break;
-                        default:
-                            checkState = false;
-                            break;
+                        checkState = true;
+                    }
+                    else
+                    {
+                        checkState = false;
                     }
                 }
                 else
@@ -93,9 +92,9 @@ namespace Common
                 }
                 return strId;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 

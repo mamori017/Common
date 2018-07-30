@@ -9,18 +9,17 @@ namespace Common
         /// <summary>
         /// Multiple start check
         /// </summary>
-        public static void CheckMultiple(string strProductName)
+        public static void ExcludeMultipleStartUp(string strProductName)
         {
             Mutex objMutex = new Mutex(false, strProductName);
 
-            if (objMutex.WaitOne(0, false))
+            if (!objMutex.WaitOne(0, false))
             {
-                Application.Run();
+                return;
             }
 
             GC.KeepAlive(objMutex);
-
-            objMutex.Close();
+            Application.Run();
         }
     }
 }
