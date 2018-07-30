@@ -34,8 +34,10 @@ namespace Common
         {
             try
             {
-                Conn = new SqlConnection();
-                Conn.ConnectionString = SqlConString();
+                Conn = new SqlConnection
+                {
+                    ConnectionString = SqlConString()
+                };
                 Conn.Open();
                 Cmd = Conn.CreateCommand();
                 return true;

@@ -96,16 +96,22 @@ namespace Common.Tests
             }
 
             Assert.AreEqual(true, IO.CreateTextFile(CommonTests.Properties.Settings.Default.IOFilePath,
-                  CommonTests.Properties.Settings.Default.IOFileName,
-                  "test",
-                  false,
-                  IO.EncodeType.sjis));
+                                                    CommonTests.Properties.Settings.Default.IOFileName,
+                                                    "test",
+                                                    false,
+                                                    IO.EncodeType.sjis));
 
-            Assert.AreEqual(true,IO.CreateTextFile(CommonTests.Properties.Settings.Default.IOFilePath,
-                              CommonTests.Properties.Settings.Default.IOFileName,
-                              "test",
-                              true,
-                              IO.EncodeType.utf8));
+            Assert.AreEqual(true, IO.CreateTextFile(CommonTests.Properties.Settings.Default.IOFilePath,
+                                                    CommonTests.Properties.Settings.Default.IOFileName,
+                                                    "test",
+                                                    true,
+                                                    IO.EncodeType.utf8));
+
+            Assert.AreEqual(true, IO.CreateTextFile(CommonTests.Properties.Settings.Default.IOFilePath + "\\",
+                                                    CommonTests.Properties.Settings.Default.IOFileName,
+                                                    "test",
+                                                    true,
+                                                    IO.EncodeType.utf8));
 
 
 
@@ -114,7 +120,7 @@ namespace Common.Tests
 
             String a = reader.ReadToEnd();
 
-            Assert.AreEqual(a, "testtest");
+            Assert.AreEqual(a, "testtesttest");
 
             reader.Close();
 

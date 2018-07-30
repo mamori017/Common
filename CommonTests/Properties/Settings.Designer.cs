@@ -227,5 +227,17 @@ namespace CommonTests.Properties {
                 this["AppveyorBuildEnv"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://weather.livedoor.com/forecast/webservice/json/v1?city=400040")]
+        public string JsonUrl {
+            get {
+                return ((string)(this["JsonUrl"]));
+            }
+            set {
+                this["JsonUrl"] = value;
+            }
+        }
     }
 }
