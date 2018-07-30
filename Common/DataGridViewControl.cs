@@ -24,7 +24,6 @@ namespace Common
                         case 1:
                             checkState = true;
                             break;
-                        case 0:
                         default:
                             checkState = false;
                             break;
@@ -68,9 +67,9 @@ namespace Common
                 }
                 return false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -112,10 +111,6 @@ namespace Common
                         {
                             dataGridView.Columns[i].ReadOnly = true;
                         }
-                        else
-                        {
-                            dataGridView.Columns[i].ReadOnly = true;
-                        }
                     }
                 }
             }
@@ -153,7 +148,7 @@ namespace Common
             }
         }
 
-        public bool CreateDataGridView(DataTable objDataTable, DataGridView objDataGridView , bool vblnCheckFlg = false, int checkFlgOrdinal = 0)
+        public static bool CreateDataGridView(DataTable objDataTable, DataGridView objDataGridView , bool vblnCheckFlg = false, int checkFlgOrdinal = 0)
         {
             DataGridViewCheckBoxColumn objColumn = null;
             try

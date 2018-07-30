@@ -60,11 +60,13 @@ namespace Common
                 // Set text file full path
                 if (filePath.Substring(filePath.Length - 1) != "\\")
                 {
-                    filePath  += "\\";
+                    outputFilePath = filePath + "\\" + fileName;
+                }
+                else
+                {
+                    outputFilePath = filePath + fileName;
                 }
 
-                outputFilePath = filePath + fileName; 
-                
                 // Encode type
                 if (encode == EncodeType.sjis)
                 {
@@ -84,21 +86,14 @@ namespace Common
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
-                if (objEncoding != null)
-                {
-                    objEncoding = null;
-                }
-
-                if (objWriter != null)
-                {
-                    objWriter = null;
-                }
+                objEncoding = null;
+                objWriter = null;
             }
         }
 
