@@ -21,18 +21,18 @@ namespace Common
                 {
                     strJson = new HttpClient().GetStringAsync(strUrl).Result;
                 }
-                catch (Exception ex2)
+                catch (Exception)
                 {
-                    throw ex2;
+                    throw;
                 }
 
                 JObject objJson = JObject.Parse(strJson);
 
                 return objJson;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }
