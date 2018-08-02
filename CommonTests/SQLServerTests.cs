@@ -20,27 +20,11 @@ namespace Common.Tests
 
             try
             {
-                string[] arrAppveyorIp = CommonTests.Properties.Settings.Default.AppveyorBuildEnv.Split(',');
-                var list = new List<string>();
-                list.AddRange(arrAppveyorIp);
+                objDB = new SQLServer(CommonTests.Properties.Settings.Default.AppveyorSqlServerName, "",
+                    CommonTests.Properties.Settings.Default.AppveyorSqlServerUser, 
+                    CommonTests.Properties.Settings.Default.AppveyorSqlServerPw);
 
-                string hostname = Dns.GetHostName();
-                IPAddress[] addr_arr = Dns.GetHostAddresses(hostname);
-
-                foreach (IPAddress addr in addr_arr)
-                {
-                    string addr_str = addr.ToString();
-                    if (list.IndexOf(addr.ToString()) >= 0)
-                    {
-                        objDB = new SQLServer(CommonTests.Properties.Settings.Default.AppveyorSqlServerName, "", CommonTests.Properties.Settings.Default.AppveyorSqlServerUser, CommonTests.Properties.Settings.Default.AppveyorSqlServerPw);
-                        Console.WriteLine("appveyor");
-                    }
-                    else
-                    {
-                        objDB = new SQLServer(CommonTests.Properties.Settings.Default.SqlServerName, "", CommonTests.Properties.Settings.Default.SqlServerUser, CommonTests.Properties.Settings.Default.SqlServerPw);
-                        Console.WriteLine("local");
-                    }
-                }
+                Console.WriteLine("=====appveyor=====");
                 return objDB;
             }
             catch (Exception ex)
