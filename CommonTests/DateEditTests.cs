@@ -14,9 +14,9 @@ namespace Common.Tests
         [TestMethod()]
         public void GetWeekStartDateTest()
         {
-            DateTime testDate = DateTime.Parse("2018/07/19");
+            System.DateTime testDate = System.DateTime.Parse("2018/07/19");
 
-            DateTime outputDate = DateEdit.GetWeekStartDate(testDate);
+            System.DateTime outputDate = DateEdit.GetWeekStartDate(testDate);
 
             Assert.AreEqual("2018/07/15", outputDate.ToShortDateString());
         }
@@ -24,7 +24,7 @@ namespace Common.Tests
         [TestMethod()]
         public void GetWeekCountTest()
         {
-            DateTime testDate = DateTime.Parse("2018/07/19");
+            System.DateTime testDate = System.DateTime.Parse("2018/07/19");
 
             int outputCount = DateEdit.GetWeekCount(testDate);
 

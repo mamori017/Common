@@ -20,9 +20,9 @@ namespace Common.Tests
 
             try
             {
-                objDB = new SQLServer(CommonTests.Properties.Settings.Default.AppveyorSqlServerName, "",
-                    CommonTests.Properties.Settings.Default.AppveyorSqlServerUser, 
-                    CommonTests.Properties.Settings.Default.AppveyorSqlServerPw);
+                objDB = new SQLServer(CommonTests.Properties.Settings.Default.SqlServerName, "",
+                    CommonTests.Properties.Settings.Default.SqlServerUser, 
+                    CommonTests.Properties.Settings.Default.SqlServerPw);
 
                 Console.WriteLine("=====appveyor=====");
                 return objDB;
