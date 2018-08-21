@@ -4,10 +4,13 @@ using System.Text;
 
 namespace Common
 {
+    /// <summary>
+    /// 入出力
+    /// </summary>
     public static class IO
     {
         /// <summary>
-        /// DirectoryCheck
+        /// ディレクトリ存在チェック
         /// </summary>
         public static bool DirectoryCheck(string directoryPath, bool makeDir = false)
         {
@@ -33,7 +36,7 @@ namespace Common
         }
 
         /// <summary>
-        /// EncodeType
+        /// エンコードタイプ
         /// </summary>
         public enum EncodeType
         {
@@ -42,7 +45,7 @@ namespace Common
         }
 
         /// <summary>
-        /// CreateTextFile
+        /// テキストファイル作成
         /// </summary>
         /// <param name="outputString"></param>
         /// <returns></returns>

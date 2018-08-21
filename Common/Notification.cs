@@ -4,10 +4,15 @@ using Windows.UI.Notifications;
 
 namespace Common
 {
+    /// <summary>
+    /// 通知
+    /// Windows.winmdの参照が必要
+    /// (C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral\Annotated)
+    /// </summary>
     public static class Notification
     {
         /// <summary>
-        /// ShowNotify
+        /// アクションバー通知(Windows8、10専用)
         /// </summary>
         public static void ShowNotify(String strLine_1, string strLine_2, string strProductName, string iconPath)
         {

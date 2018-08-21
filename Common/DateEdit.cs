@@ -3,10 +3,13 @@ using System.Globalization;
 
 namespace Common
 {
-    public static class DateEdit
+    /// <summary>
+    /// 日付編集
+    /// </summary>
+    public class DateEdit
     {
         /// <summary>
-        /// GetWeekStartDate
+        /// 週開始日(日曜日)取得
         /// </summary>
         /// <param name="targetDate"></param>
         /// <returns></returns>
@@ -16,7 +19,7 @@ namespace Common
         }
 
         /// <summary>
-        /// GetWeekCount
+        /// 指定日が年内の第何週目に当たるか
         /// </summary>
         /// <param name="startDate"></param>
         /// <returns></returns>
@@ -32,7 +35,7 @@ namespace Common
         }
 
         /// <summary>
-        /// GetDateTimeOffset
+        /// UTC基準のオフセット値
         /// </summary>
         /// <param name="dateTime"></param>
         /// <param name="dateTimeKind"></param>
@@ -46,7 +49,7 @@ namespace Common
         }
 
         /// <summary>
-        /// GetDateTimeOffset
+        /// UTC基準のオフセット値
         /// </summary>
         /// <param name="dateTime"></param>
         /// <param name="spanHour"></param>
@@ -79,7 +82,7 @@ namespace Common
         }
 
         /// <summary>
-        /// GetDateTimeOffset
+        /// UTC基準のオフセット値
         /// </summary>
         /// <param name="dateTime"></param>
         /// <returns></returns>
@@ -89,7 +92,5 @@ namespace Common
 
             return dateTimeOffset;
         }
-
-
     }
 }

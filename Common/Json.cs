@@ -5,10 +5,14 @@ using System.Net.Http;
 
 namespace Common
 {
+    /// <summary>
+    /// JSON
+    /// 要nuget restore
+    /// </summary>
     public static class Json
     {
         /// <summary>
-        /// GetJsonDictionary
+        /// JSON情報取得(HTTP)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -61,6 +61,7 @@
     <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLServer.cs" />
+    <Compile Include="Tax.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

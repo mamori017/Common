@@ -2,6 +2,9 @@
 
 namespace Common
 {
+    /// <summary>
+    /// ログ
+    /// </summary>
     public static class Log
     {
         /// <summary>
