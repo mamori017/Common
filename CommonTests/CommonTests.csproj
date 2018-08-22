@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="ArrayEditTests.cs" />
     <Compile Include="DateEditTests.cs" />
+    <Compile Include="InputCheckTests.cs" />
     <Compile Include="IOTests.cs" />
     <Compile Include="JsonTests.cs" />
     <Compile Include="LogTests.cs" />
