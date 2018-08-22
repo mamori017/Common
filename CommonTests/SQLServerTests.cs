@@ -20,11 +20,31 @@ namespace Common.Tests
 
             try
             {
-                objDB = new SQLServer(CommonTests.Properties.Settings.Default.SqlServerName, "",
-                    CommonTests.Properties.Settings.Default.SqlServerUser, 
-                    CommonTests.Properties.Settings.Default.SqlServerPw);
+                string hostname = Dns.GetHostName();
 
-                Console.WriteLine("=====appveyor=====");
+                IPAddress[] adrList = Dns.GetHostAddresses(hostname);
+                foreach (IPAddress address in adrList)
+                {
+                    if(address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                    {
+                        String[] appVeyorEnv = CommonTests.Properties.Settings.Default.AppveyorBuildEnv.Split(',');
+
+                        if (Array.IndexOf(appVeyorEnv, address) > 0)
+                        {
+                            objDB = new SQLServer(CommonTests.Properties.Settings.Default.AppveyorSqlServerName,
+                                                  "",
+                                                  CommonTests.Properties.Settings.Default.AppveyorSqlServerUser,
+                                                  CommonTests.Properties.Settings.Default.AppveyorSqlServerPw);
+                            return objDB;
+                        }
+                    }
+                }
+
+                objDB = new SQLServer(CommonTests.Properties.Settings.Default.SqlServerName,
+                                      "",
+                                      CommonTests.Properties.Settings.Default.SqlServerUser,
+                                      CommonTests.Properties.Settings.Default.SqlServerPw);
+
                 return objDB;
             }
             catch (Exception ex)

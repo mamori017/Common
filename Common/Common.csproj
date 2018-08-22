@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="ArrayEdit.cs" />
     <Compile Include="DataGridViewControl.cs" />
+    <Compile Include="DateEdit.cs" />
     <Compile Include="IO.cs" />
     <Compile Include="Json.cs" />
     <Compile Include="Log.cs" />

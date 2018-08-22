@@ -2,3 +2,4 @@
 exclude_paths:
   - 'Common/Properties/*'
   - 'CommonTests/*'
+  - 'CommonTests/Properties/*'

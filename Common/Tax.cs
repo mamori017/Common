@@ -2,6 +2,9 @@
 
 namespace Common
 {
+    /// <summary>
+    /// 軽減税率計算(2019/10/1-)
+    /// </summary>
     public class Tax
     {
         /// <summary>

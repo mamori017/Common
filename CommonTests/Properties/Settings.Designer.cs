@@ -181,7 +181,7 @@ namespace CommonTests.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("172.24.90.22\\Dashboard")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string SqlServerName {
             get {
                 return ((string)(this["SqlServerName"]));
@@ -193,7 +193,7 @@ namespace CommonTests.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("dashboard")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string SqlServerUser {
             get {
                 return ((string)(this["SqlServerUser"]));
@@ -205,7 +205,7 @@ namespace CommonTests.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("78366257DNA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string SqlServerPw {
             get {
                 return ((string)(this["SqlServerPw"]));

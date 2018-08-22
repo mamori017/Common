@@ -35,62 +35,83 @@ namespace Common
         }
 
         /// <summary>
-        /// UTC基準のオフセット値
+        /// 和暦
         /// </summary>
-        /// <param name="dateTime"></param>
-        /// <param name="dateTimeKind"></param>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
         /// <returns></returns>
-        public static DateTimeOffset GetDateTimeOffset(DateTime dateTime, DateTimeKind dateTimeKind)
+        public static string GetJapaneseEraName(int year, int month, int day)
         {
+            string ret = "";
 
-            DateTimeOffset dateTimeOffset = new DateTimeOffset(dateTime);
+            DateTime dateTime = new DateTime(year, month, day);
+            CultureInfo cultureInfo = new CultureInfo("ja-Jp");
 
-            return dateTimeOffset;
+            ret = cultureInfo.DateTimeFormat.GetEraName(cultureInfo.DateTimeFormat.Calendar.GetEra(dateTime));
+
+            return ret;
         }
 
         /// <summary>
-        /// UTC基準のオフセット値
+        /// 曜日
         /// </summary>
-        /// <param name="dateTime"></param>
-        /// <param name="spanHour"></param>
-        /// <param name="spanMin"></param>
-        /// <param name="spanSec"></param>
-        /// <param name="unspecified"></param>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
         /// <returns></returns>
-        public static DateTimeOffset GetDateTimeOffset(DateTime dateTime, int spanHour, int spanMin, int spanSec, bool unspecified = false)
+        public static string GetJapaneseWeekday(int year, int month, int day, bool shortest = false)
         {
-            DateTimeOffset dateTimeOffset;
+            string ret = "";
 
-            if (spanHour >= 59 || spanMin >= 59 || spanSec >= 59)
-            {
-                spanHour = 0;
-                spanMin = 0;
-                spanSec = 0;
-            }
+            DateTime dateTime = new DateTime(year, month, day);
+            CultureInfo cultureInfo = new CultureInfo("ja-Jp");
 
-            if (unspecified)
+            if (shortest)
             {
-                dateTimeOffset = new DateTimeOffset(DateTime.SpecifyKind(dateTime, DateTimeKind.Unspecified),
-                                                    new TimeSpan(spanHour, spanMin, spanSec));
+                ret = cultureInfo.DateTimeFormat.GetShortestDayName(dateTime.DayOfWeek);
             }
             else
             {
-                dateTimeOffset = new DateTimeOffset(dateTime, new TimeSpan(spanHour, spanMin, spanSec));
+                ret = cultureInfo.DateTimeFormat.GetDayName(dateTime.DayOfWeek);
             }
-
-            return dateTimeOffset;
+            return ret;
         }
 
         /// <summary>
-        /// UTC基準のオフセット値
+        /// 月末日付
         /// </summary>
-        /// <param name="dateTime"></param>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
         /// <returns></returns>
-        public static DateTimeOffset GetDateTimeOffset(string dateTime)
+        public DateTime GeDaysInMonth(int year, int month, int day)
         {
-            bool parseRet = DateTimeOffset.TryParse(dateTime, out DateTimeOffset dateTimeOffset);
+            DateTime dateTime = new DateTime(year, month, day);
+            int daysInMonth = DateTime.DaysInMonth(year, month);
 
-            return dateTimeOffset;
+            return new DateTime(year, month, daysInMonth);
+        }
+
+        /// <summary>
+        /// 次週の対象曜日と同曜日
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
+        /// <param name="dayOfWeek"></param>
+        /// <returns></returns>
+        public static DateTime NextWeekDay(int year, int month, int day, DayOfWeek dayOfWeek)
+        {
+            DateTime dateTime = new DateTime(year, month, day);
+
+            int dayDiff = (int)dayOfWeek - (int)dateTime.DayOfWeek;
+
+            if(dayDiff <= 0)
+            {
+                dayDiff += 7;
+            }
+            return dateTime.AddDays(dayDiff);
         }
     }
 }

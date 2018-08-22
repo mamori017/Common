@@ -11,24 +11,24 @@ namespace Common.Tests
     [TestClass()]
     public class DateEditTests
     {
-        //[TestMethod()]
-        //public void GetWeekStartDateTest()
-        //{
-        //    System.DateTime testDate = System.DateTime.Parse("2018/07/19");
+        [TestMethod()]
+        public void GetWeekStartDateTest()
+        {
+            System.DateTime testDate = System.DateTime.Parse("2018/07/19");
 
-        //    System.DateTime outputDate = DateEdit.GetWeekStartDate(testDate);
+            System.DateTime outputDate = DateEdit.GetWeekStartDate(testDate);
 
-        //    Assert.AreEqual("2018/07/15", outputDate.ToShortDateString());
-        //}
+            Assert.AreEqual("2018/07/15", outputDate.ToShortDateString());
+        }
 
-        //[TestMethod()]
-        //public void GetWeekCountTest()
-        //{
-        //    System.DateTime testDate = System.DateTime.Parse("2018/07/19");
+        [TestMethod()]
+        public void GetWeekCountTest()
+        {
+            System.DateTime testDate = System.DateTime.Parse("2018/07/19");
 
-        //    int outputCount = DateEdit.GetWeekCount(testDate);
+            int outputCount = DateEdit.GetWeekCount(testDate);
 
-        //    Assert.AreEqual(29, outputCount);
-        //}
+            Assert.AreEqual(29, outputCount);
+        }
     }
 }

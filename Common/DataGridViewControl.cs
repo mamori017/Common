@@ -161,9 +161,11 @@ namespace Common
 
                 if(objData != null)
                 {
-                    objBind = new BindingSource();
-                    objBind.DataSource = objData;
-                    objBind.Filter = filterQuery;
+                    objBind = new BindingSource
+                    {
+                        DataSource = objData,
+                        Filter = filterQuery   
+                    };
                 }
             }
             catch (Exception ex)
@@ -174,7 +176,6 @@ namespace Common
             {
                 objBind = null;
                 objData = null;
-
             }
         }
 
