@@ -5,6 +5,9 @@ namespace Common.Tests
     [TestClass()]
     public class ArrayEditTests
     {
+        /// <summary>
+        /// ArraySortTest
+        /// </summary>
         [TestMethod()]
         public void ArraySortTest()
         {
@@ -30,6 +33,9 @@ namespace Common.Tests
             Assert.AreEqual(true,true);
         }
 
+        /// <summary>
+        /// ExceptDuplicationTest
+        /// </summary>
         [TestMethod()]
         public void ExceptDuplicationTest()
         {
@@ -42,7 +48,6 @@ namespace Common.Tests
             {
                 Assert.Fail();
             }
-
 
             for (int i = 0; i < testResult.Length; i++)
             {

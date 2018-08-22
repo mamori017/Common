@@ -1,12 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Common;
+﻿using CommonTests.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Data;
-using System.Data.SqlClient;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net;
 
 namespace Common.Tests
@@ -14,6 +9,10 @@ namespace Common.Tests
     [TestClass()]
     public class SQLServerTests
     {
+        /// <summary>
+        /// TestEnvJudge
+        /// </summary>
+        /// <returns></returns>
         private SQLServer TestEnvJudge()
         {
             SQLServer objDB = null;
@@ -25,25 +24,25 @@ namespace Common.Tests
                 IPAddress[] adrList = Dns.GetHostAddresses(hostname);
                 foreach (IPAddress address in adrList)
                 {
-                    if(address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                    if (address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
                     {
-                        String[] appVeyorEnv = CommonTests.Properties.Settings.Default.AppveyorBuildEnv.Split(',');
+                        String[] appVeyorEnv = Settings.Default.AppveyorBuildEnv.Split(',');
 
                         if (Array.IndexOf(appVeyorEnv, address) > 0)
                         {
-                            objDB = new SQLServer(CommonTests.Properties.Settings.Default.AppveyorSqlServerName,
+                            objDB = new SQLServer(Settings.Default.AppveyorSqlServerName,
                                                   "",
-                                                  CommonTests.Properties.Settings.Default.AppveyorSqlServerUser,
-                                                  CommonTests.Properties.Settings.Default.AppveyorSqlServerPw);
+                                                  Settings.Default.AppveyorSqlServerUser,
+                                                  Settings.Default.AppveyorSqlServerPw);
                             return objDB;
                         }
                     }
                 }
 
-                objDB = new SQLServer(CommonTests.Properties.Settings.Default.SqlServerName,
+                objDB = new SQLServer(Settings.Default.SqlServerName,
                                       "",
-                                      CommonTests.Properties.Settings.Default.SqlServerUser,
-                                      CommonTests.Properties.Settings.Default.SqlServerPw);
+                                      Settings.Default.SqlServerUser,
+                                      Settings.Default.SqlServerPw);
 
                 return objDB;
             }
@@ -53,7 +52,10 @@ namespace Common.Tests
                 throw;
             }
         }
-        
+
+        /// <summary>
+        /// ConnectTest
+        /// </summary>
         [TestMethod()]
         public void ConnectTest()
         {
@@ -74,6 +76,9 @@ namespace Common.Tests
 
         }
 
+        /// <summary>
+        /// DisconnectTest
+        /// </summary>
         [TestMethod()]
         public void DisconnectTest()
         {
@@ -91,6 +96,162 @@ namespace Common.Tests
             }
             finally
             {
+                objDB = null;
+            }
+        }
+
+        /// <summary>
+        /// BeginTransTest
+        /// </summary>
+        [TestMethod()]
+        public void BeginTransTest()
+        {
+            SQLServer objDB = null;
+            try
+            {
+                objDB = TestEnvJudge();
+                if (objDB != null)
+                {
+                    if (objDB.Connect())
+                    {
+                        Assert.AreEqual(true, objDB.BeginTrans());
+
+                        objDB.RollBack();
+                    }
+                }
+            }
+            finally
+            {
+                if (objDB.Connect())
+                {
+                    objDB.Disconnect();
+                }
+                objDB = null;
+            }
+        }
+
+        /// <summary>
+        /// RollBackTest
+        /// </summary>
+        [TestMethod()]
+        public void RollBackTest()
+        {
+            SQLServer objDB = null;
+            try
+            {
+                objDB = TestEnvJudge();
+                if (objDB != null)
+                {
+                    if (objDB.Connect())
+                    {
+                        objDB.BeginTrans();
+
+                        Assert.AreEqual(true, objDB.RollBack());
+                    }
+                }
+            }
+            finally
+            {
+                if (objDB.Connect())
+                {
+                    objDB.Disconnect();
+                }
+                objDB = null;
+            }
+        }
+
+        /// <summary>
+        /// ChangeDataTest
+        /// </summary>
+        [TestMethod()]
+        public void ChangeDataTest()
+        {
+            SQLServer objDB = null;
+            Random random = new Random();
+
+            try
+            {
+                objDB = TestEnvJudge();
+                if (objDB != null)
+                {
+                    if (objDB.Connect())
+                    {
+                        int ret = objDB.ChangeData("INSERT INTO inspection.dbo.Test_143336483 VALUES('" + random.Next() + "','A','B','C')");
+                        Assert.AreEqual(ret, 1);
+                    }
+                }
+            }
+            finally
+            {
+                if (objDB.Connect())
+                {
+                    objDB.Disconnect();
+                }
+                objDB = null;
+                random = null;
+            }
+        }
+
+        /// <summary>
+        /// CreateAndDropTableTest
+        /// </summary>
+        [TestMethod()]
+        public void CreateAndDropTableTest()
+        {
+            SQLServer objDB = null;
+            Random random = new Random();
+
+            try
+            {
+                objDB = TestEnvJudge();
+                if (objDB != null)
+                {
+                    if (objDB.Connect())
+                    {
+                        bool ret = objDB.CreateAndDropTable("CREATE TABLE Test_" +
+                                                   DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond +
+                                                   " (id int NOT NULL PRIMARY KEY, col_1 nvarchar(10) NULL, col_2 nvarchar(10) NULL, col_3 nvarchar(10) NULL);");
+                        Assert.AreEqual(true, ret);
+                    }
+                }
+            }
+            finally
+            {
+                if (objDB.Connect())
+                {
+                    objDB.Disconnect();
+                }
+                objDB = null;
+                random = null;
+            }
+
+        }
+
+        /// <summary>
+        /// GetDataTest
+        /// </summary>
+        [TestMethod()]
+        public void GetDataTest()
+        {
+            SQLServer objDB = null;
+          
+            try
+            {
+                objDB = TestEnvJudge();
+                if (objDB != null)
+                {
+                    if (objDB.Connect())
+                    {
+                        DataTable dataTable = objDB.GetData("SELECT * FROM get_test");
+                    }
+                }
+            }
+            finally
+            {
+                if (objDB.Connect())
+                {
+                    objDB.Disconnect();
+                }
                 objDB = null;
             }
         }

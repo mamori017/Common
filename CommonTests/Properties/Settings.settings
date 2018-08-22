@@ -42,13 +42,13 @@
       <Value Profile="(Default)">Password12!</Value>
     </Setting>
     <Setting Name="SqlServerName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">(local)\\SQL2014</Value>
     </Setting>
     <Setting Name="SqlServerUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">sa</Value>
     </Setting>
     <Setting Name="SqlServerPw" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Password12!</Value>
     </Setting>
     <Setting Name="AppveyorBuildEnv" Type="System.String" Scope="User">
       <Value Profile="(Default)">74.205.54.20,104.197.110.30,104.197.145.181,146.148.85.29,67.225.139.254,67.225.138.82,67.225.139.144</Value>

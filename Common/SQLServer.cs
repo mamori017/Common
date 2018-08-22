@@ -69,7 +69,7 @@ namespace Common
         {
             try
             {
-                if (Conn.State == ConnectionState.Open && Trans.Connection == null)
+                if (Conn.State == ConnectionState.Open && Trans == null)
                 {
                     Trans = Conn.BeginTransaction();
                     Cmd.Transaction = Trans;
@@ -94,7 +94,7 @@ namespace Common
         {
             try
             {
-                if (Conn.State == ConnectionState.Open && Trans.Connection == null)
+                if (Conn.State == ConnectionState.Open && Trans != null)
                 {
                     Trans.Rollback();
                 }
@@ -118,7 +118,7 @@ namespace Common
         {
             try
             {
-                if (Conn.State == ConnectionState.Open && Trans.Connection != null)
+                if (Conn.State == ConnectionState.Open && Trans != null)
                 {
                     Trans.Commit();
                 }
@@ -205,5 +205,37 @@ namespace Common
                 throw ex;
             }
         }
+
+
+        /// <summary>
+        /// CreateAndDropTable
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public bool CreateAndDropTable(String sql)
+        {
+            try
+            {
+                if (Conn.State == ConnectionState.Open)
+                {
+                    try
+                    {
+                        Cmd.CommandText = sql;
+                        Cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

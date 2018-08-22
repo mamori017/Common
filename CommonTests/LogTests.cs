@@ -1,43 +1,45 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Common;
+﻿using CommonTests.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Tests
 {
     [TestClass()]
     public class LogTests
     {
+        /// <summary>
+        /// OutputTest
+        /// </summary>
         [TestMethod()]
         public void OutputTest()
         {
             Log.Output("test",
-                       CommonTests.Properties.Settings.Default.LogFilePath,
-                       CommonTests.Properties.Settings.Default.LogFileName);
+                       Settings.Default.LogFilePath,
+                       Settings.Default.LogFileName);
 
-            Assert.AreEqual(true,File.Exists(CommonTests.Properties.Settings.Default.LogFilePath + "\\" + CommonTests.Properties.Settings.Default.LogFileName));
+            Assert.AreEqual(true,File.Exists(Settings.Default.LogFilePath + "\\" + Settings.Default.LogFileName));
         }
 
+        /// <summary>
+        /// ExceptionOutputTest
+        /// </summary>
         [TestMethod()]
         public void ExceptionOutputTest()
         {
             try
             {
-                throw new System.ArgumentException("Parameter cannot be null", "original");
+                throw new ArgumentException("Parameter cannot be null", "original");
 
             }
             catch (Exception ex)
             {
                 Log.ExceptionOutput(ex,
-                                    CommonTests.Properties.Settings.Default.ExFilePath,
-                                    CommonTests.Properties.Settings.Default.ExFileName);
+                                    Settings.Default.ExFilePath,
+                                    Settings.Default.ExFileName);
             }
 
-            Assert.AreEqual(true, File.Exists(CommonTests.Properties.Settings.Default.ExFilePath + "\\" + CommonTests.Properties.Settings.Default.ExFileName));
+            Assert.AreEqual(true, File.Exists(Settings.Default.ExFilePath + "\\" + Settings.Default.ExFileName));
         }
     }
 }
