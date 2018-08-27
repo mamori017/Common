@@ -5,13 +5,15 @@ using System.Text;
 namespace Common
 {
     /// <summary>
-    /// 入出力
+    /// 
     /// </summary>
     public static class IO
     {
         /// <summary>
-        /// ディレクトリ存在チェック
         /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <param name="makeDir"></param>
+        /// <returns></returns>
         public static bool DirectoryCheck(string directoryPath, bool makeDir = false)
         {
             try
@@ -36,7 +38,7 @@ namespace Common
         }
 
         /// <summary>
-        /// エンコードタイプ
+        /// 
         /// </summary>
         public enum EncodeType
         {
@@ -45,9 +47,13 @@ namespace Common
         }
 
         /// <summary>
-        /// テキストファイル作成
+        /// 
         /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="fileName"></param>
         /// <param name="outputString"></param>
+        /// <param name="append"></param>
+        /// <param name="encode"></param>
         /// <returns></returns>
         public static bool CreateTextFile(string filePath, string fileName, string outputString, bool append = true, EncodeType encode = EncodeType.utf8)
         {

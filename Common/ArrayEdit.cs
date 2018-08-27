@@ -4,12 +4,12 @@ using System.Collections;
 namespace Common
 {
     /// <summary>
-    /// 配列編集
+    /// 
     /// </summary>
     public static class ArrayEdit
     {
         /// <summary>
-        /// 並べ替えと重複要素の削除
+        /// 
         /// </summary>
         /// <param name="strArray"></param>
         /// <returns></returns>

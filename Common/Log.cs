@@ -3,12 +3,12 @@
 namespace Common
 {
     /// <summary>
-    /// ログ
+    /// 
     /// </summary>
     public static class Log
     {
         /// <summary>
-        /// Output
+        /// 
         /// </summary>
         public static void Output(String outputDetail, String filePath, String fileName)
         {
@@ -19,7 +19,7 @@ namespace Common
         }
 
         /// <summary>
-        /// ExceptionOutput
+        /// 
         /// </summary>
         public static void ExceptionOutput(Exception ex, String filePath, String fileName)
         {

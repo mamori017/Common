@@ -58,6 +58,7 @@
     <Compile Include="IO.cs" />
     <Compile Include="Json.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="Mail.cs" />
     <Compile Include="Notification.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

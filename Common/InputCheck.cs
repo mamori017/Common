@@ -2,10 +2,13 @@
 
 namespace Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class InputCheck
     {
         /// <summary>
-        /// 半角英字チェック
+        /// 
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -24,7 +27,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 半角カナチェック
+        /// 
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -38,7 +41,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 半角記号チェック
+        /// 
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -49,7 +52,7 @@ namespace Common
                 return false;
             }
 
-            if (Regex.IsMatch(input, @"[\u0021-\002F]") || Regex.IsMatch(input, @"[\u003A-\u0040]") ||
+            if (Regex.IsMatch(input, @"[\u0021-\u002F]") || Regex.IsMatch(input, @"[\u003A-\u0040]") ||
                 Regex.IsMatch(input, @"[\u005B-\u0060]") || Regex.IsMatch(input, @"[\u007B-\u007F]"))
             {
                 return true;
@@ -58,7 +61,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 全角数値チェック
+        /// 
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -72,7 +75,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 全角英字チェック
+        /// 
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -91,7 +94,7 @@ namespace Common
         }
 
         /// <summary>
-        /// ひらがなチェック
+        /// 
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -105,7 +108,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 全角カナチェック
+        /// 
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -119,7 +122,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 全角記号チェック
+        /// 
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>

@@ -5,12 +5,12 @@ using System.Windows.Forms;
 namespace Common
 {
     /// <summary>
-    /// DataGridViewコントロール
+    /// 
     /// </summary>
     public class DataGridViewControl
     {
         /// <summary>
-        /// チェック状態変更
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="dataGridView"></param>
@@ -57,7 +57,7 @@ namespace Common
         }
 
         /// <summary>
-        /// チェックボックスの状態チェック
+        /// 
         /// </summary>
         /// <param name="dataGridView"></param>
         /// <param name="cellPos"></param>
@@ -88,7 +88,7 @@ namespace Common
         }
 
         /// <summary>
-        /// チェックボックス選択行内の列要素取得
+        /// 
         /// </summary>
         /// <param name="dataGridView"></param>
         /// <param name="cellPos"></param>
@@ -120,7 +120,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 読み取り専用セルへ変更
+        /// 
         /// </summary>
         /// <param name="dataGridView"></param>
         /// <param name="firstCellTarget"></param>
@@ -146,7 +146,7 @@ namespace Common
         }
 
         /// <summary>
-        /// フィルタ状態の変更
+        /// 
         /// </summary>
         /// <param name="dataGridView"></param>
         /// <param name="filterQuery"></param>
@@ -180,7 +180,7 @@ namespace Common
         }
 
         /// <summary>
-        /// DataTableからDataGridViewを作成
+        /// 
         /// </summary>
         /// <param name="objDataTable"></param>
         /// <param name="objDataGridView"></param>

@@ -4,6 +4,8 @@ using System.Data.SqlClient;
 
 namespace Common
 {
+    /// <summary>
+    /// </summary>
     public class SQLServer
     {
         public SqlConnection Conn { get; private set; }
@@ -16,8 +18,11 @@ namespace Common
         public bool Disposed { get; set; }
 
         /// <summary>
-        /// Initialize
         /// </summary>
+        /// <param name="SqlServerName"></param>
+        /// <param name="SqlServerCatalog"></param>
+        /// <param name="SqlServerUser"></param>
+        /// <param name="SqlServerPassword"></param>
         public SQLServer(String SqlServerName, String SqlServerCatalog, String SqlServerUser, String SqlServerPassword)
         {
             ServerName = SqlServerName;
@@ -27,7 +32,6 @@ namespace Common
         }
 
         /// <summary>
-        /// Connect
         /// </summary>
         /// <returns></returns>
         public bool Connect()
@@ -49,7 +53,6 @@ namespace Common
         }
 
         /// <summary>
-        /// Connection String
         /// </summary>
         /// <returns></returns>
         private String SqlConString()
@@ -87,7 +90,6 @@ namespace Common
         }
 
         /// <summary>
-        /// Roll Back
         /// </summary>
         /// <returns></returns>
         public bool RollBack()
@@ -155,7 +157,6 @@ namespace Common
         }
 
         /// <summary>
-        /// Get Data
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
@@ -184,7 +185,6 @@ namespace Common
         }
 
         /// <summary>
-        /// Change Data
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>

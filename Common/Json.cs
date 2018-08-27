@@ -6,16 +6,15 @@ using System.Net.Http;
 namespace Common
 {
     /// <summary>
-    /// JSON
-    /// 要nuget restore
+    /// 
     /// </summary>
     public static class Json
     {
         /// <summary>
-        /// JSON情報取得(HTTP)
+        /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="strUrl"></param>
+        /// <returns></returns>
         public static JObject GetJsonObject(String strUrl)
         {
             try

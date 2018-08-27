@@ -4,12 +4,11 @@ using System.Globalization;
 namespace Common
 {
     /// <summary>
-    /// 日付編集
+    /// 
     /// </summary>
-    public class DateEdit
+    public static class DateEdit
     {
         /// <summary>
-        /// 週開始日(日曜日)取得
         /// </summary>
         /// <param name="targetDate"></param>
         /// <returns></returns>
@@ -19,7 +18,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 指定日が年内の第何週目に当たるか
+        /// 
         /// </summary>
         /// <param name="startDate"></param>
         /// <returns></returns>
@@ -35,7 +34,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 和暦
+        /// 
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>
@@ -48,13 +47,15 @@ namespace Common
             DateTime dateTime = new DateTime(year, month, day);
             CultureInfo cultureInfo = new CultureInfo("ja-Jp");
 
+            cultureInfo.DateTimeFormat.Calendar = new JapaneseCalendar();
+
             ret = cultureInfo.DateTimeFormat.GetEraName(cultureInfo.DateTimeFormat.Calendar.GetEra(dateTime));
 
             return ret;
         }
 
         /// <summary>
-        /// 曜日
+        /// 
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>
@@ -79,13 +80,13 @@ namespace Common
         }
 
         /// <summary>
-        /// 月末日付
+        /// 
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>
         /// <param name="day"></param>
         /// <returns></returns>
-        public DateTime GeDaysInMonth(int year, int month, int day)
+        public static DateTime GetDaysInMonth(int year, int month, int day)
         {
             DateTime dateTime = new DateTime(year, month, day);
             int daysInMonth = DateTime.DaysInMonth(year, month);
@@ -94,7 +95,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 次週の対象曜日と同曜日
+        /// 
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>
