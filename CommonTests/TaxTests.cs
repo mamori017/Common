@@ -9,18 +9,12 @@ namespace Common.Tests
         DateTime dateTime;
         Tax tax;
 
-        /// <summary>
-        /// 適用前日付
-        /// </summary>
         private void SetBeforeStartDate()
         {
             dateTime = new DateTime(2018, 8, 21, 0, 0, 0);
             tax = new Tax(dateTime);
         }
 
-        /// <summary>
-        /// 新税率適用前(8%)
-        /// </summary>
         [TestMethod()]
         public void TaxInPriceTestBeforeStartDate_1()
         {
@@ -28,9 +22,6 @@ namespace Common.Tests
             Assert.AreEqual(116, tax.TaxInPrice(108, Tax.ItemType.Alchol));
         }
 
-        /// <summary>
-        /// 新税率適用前(8%)
-        /// </summary>
         [TestMethod()]
         public void TaxInPriceTestBeforeStartDate_2()
         {
@@ -38,9 +29,6 @@ namespace Common.Tests
             Assert.AreEqual(116, tax.TaxInPrice(108, Tax.ItemType.Food));
         }
 
-        /// <summary>
-        /// 新税率適用前(8%)
-        /// </summary>
         [TestMethod()]
         public void TaxInPriceTestBeforeStartDate_3()
         {
@@ -48,9 +36,6 @@ namespace Common.Tests
             Assert.AreEqual(116, tax.TaxInPrice(108, Tax.ItemType.FoodWithEatOut));
         }
 
-        /// <summary>
-        /// 新税率適用前(8%)
-        /// </summary>
         [TestMethod()]
         public void TaxInPriceTestBeforeStartDate_4()
         {
@@ -58,9 +43,6 @@ namespace Common.Tests
             Assert.AreEqual(116, tax.TaxInPrice(108, Tax.ItemType.NewsPaper));
         }
 
-        /// <summary>
-        /// 新税率適用前(8%)
-        /// </summary>
         [TestMethod()]
         public void TaxInPriceTestBeforeStartDate_5()
         {
@@ -68,18 +50,12 @@ namespace Common.Tests
             Assert.AreEqual(116, tax.TaxInPrice(108, Tax.ItemType.Other));
         }
 
-        /// <summary>
-        /// 適用後日付
-        /// </summary>
         private void SetAfterStartDate()
         {
             dateTime = new DateTime(2019, 10, 1, 0, 0, 0);
             tax = new Tax(dateTime);
         }
 
-        /// <summary>
-        /// 新税率適用後(10%)
-        /// </summary>
         [TestMethod()]
         public void TaxInPriceTestAfterStartDate_1()
         {
@@ -87,9 +63,6 @@ namespace Common.Tests
             Assert.AreEqual(118, tax.TaxInPrice(108, Tax.ItemType.Alchol));
         }
 
-        /// <summary>
-        /// 新税率適用後(軽減税率対象)
-        /// </summary>
         [TestMethod()]
         public void TaxInPriceTestAfterStartDate_2()
         {
@@ -97,9 +70,6 @@ namespace Common.Tests
             Assert.AreEqual(116, tax.TaxInPrice(108, Tax.ItemType.Food));
         }
 
-        /// <summary>
-        /// 新税率適用後(10%)
-        /// </summary>
         [TestMethod()]
         public void TaxInPriceTestAfterStartDate_3()
         {
@@ -107,9 +77,6 @@ namespace Common.Tests
             Assert.AreEqual(118, tax.TaxInPrice(108, Tax.ItemType.FoodWithEatOut));
         }
 
-        /// <summary>
-        /// 新税率適用後
-        /// </summary>
         [TestMethod()]
         public void TaxInPriceTestAfterStartDate_4()
         {
@@ -117,9 +84,6 @@ namespace Common.Tests
             Assert.AreEqual(118, tax.TaxInPrice(108, Tax.ItemType.NewsPaper));
         }
 
-        /// <summary>
-        /// 新税率適用後
-        /// </summary>
         [TestMethod()]
         public void TaxInPriceTestAfterStartDate_5()
         {
@@ -127,9 +91,6 @@ namespace Common.Tests
             Assert.AreEqual(118, tax.TaxInPrice(108, Tax.ItemType.NewsPaper, 1));
         }
 
-        /// <summary>
-        /// 新税率適用後(軽減税率対象)
-        /// </summary>
         [TestMethod()]
         public void TaxInPriceTestAfterStartDate_6()
         {
@@ -137,9 +98,6 @@ namespace Common.Tests
             Assert.AreEqual(116, tax.TaxInPrice(108, Tax.ItemType.NewsPaper, 2));
         }
 
-        /// <summary>
-        /// 新税率適用後
-        /// </summary>
         [TestMethod()]
         public void TaxInPriceTestAfterStartDate_7()
         {

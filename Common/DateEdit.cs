@@ -3,25 +3,13 @@ using System.Globalization;
 
 namespace Common
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public static class DateEdit
     {
-        /// <summary>
-        /// </summary>
-        /// <param name="targetDate"></param>
-        /// <returns></returns>
         public static DateTime GetWeekStartDate(DateTime targetDate)
         {
                 return targetDate.AddDays(-(int)targetDate.DayOfWeek);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="startDate"></param>
-        /// <returns></returns>
         public static int GetWeekCount(DateTime startDate)
         {
             int weekCount = 0;
@@ -33,13 +21,6 @@ namespace Common
             return weekCount;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="year"></param>
-        /// <param name="month"></param>
-        /// <param name="day"></param>
-        /// <returns></returns>
         public static string GetJapaneseEraName(int year, int month, int day)
         {
             string ret = "";
@@ -54,13 +35,6 @@ namespace Common
             return ret;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="year"></param>
-        /// <param name="month"></param>
-        /// <param name="day"></param>
-        /// <returns></returns>
         public static string GetJapaneseWeekday(int year, int month, int day, bool shortest = false)
         {
             string ret = "";
@@ -79,13 +53,6 @@ namespace Common
             return ret;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="year"></param>
-        /// <param name="month"></param>
-        /// <param name="day"></param>
-        /// <returns></returns>
         public static DateTime GetDaysInMonth(int year, int month, int day)
         {
             DateTime dateTime = new DateTime(year, month, day);
@@ -94,14 +61,6 @@ namespace Common
             return new DateTime(year, month, daysInMonth);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="year"></param>
-        /// <param name="month"></param>
-        /// <param name="day"></param>
-        /// <param name="dayOfWeek"></param>
-        /// <returns></returns>
         public static DateTime NextWeekDay(int year, int month, int day, DayOfWeek dayOfWeek)
         {
             DateTime dateTime = new DateTime(year, month, day);

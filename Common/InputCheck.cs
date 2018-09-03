@@ -2,16 +2,8 @@
 
 namespace Common
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class InputCheck
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
         public static bool ContainsHalfWidthAlpthabet(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -26,11 +18,6 @@ namespace Common
             return false;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
         public static bool ContainsHalfWidthKana(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -40,11 +27,6 @@ namespace Common
             return Regex.IsMatch(input,@"[\uFF61-\uFF9F]");
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
         public static bool ContainsHalfWidthSybol(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -60,11 +42,6 @@ namespace Common
             return false;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
         public static bool ContainsFullWidthNumber(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -74,11 +51,6 @@ namespace Common
             return Regex.IsMatch(input, @"[\uFF10-\uFF19]");
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
         public static bool ContainsFullWidthAlpthabet(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -93,11 +65,6 @@ namespace Common
             return false;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
         public static bool ContainsFullWidthHiragana(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -107,11 +74,6 @@ namespace Common
             return Regex.IsMatch(input, @"[\u3041-\u3096]");
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
         public static bool ContainsFullWidthKana(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -121,11 +83,6 @@ namespace Common
             return Regex.IsMatch(input, @"[\u30A1-\u30FA]");
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
         public static bool ContainsFullWidthSybol(string input)
         {
             if (string.IsNullOrEmpty(input))

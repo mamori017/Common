@@ -11,9 +11,6 @@ namespace Common.Tests
     [TestClass()]
     public class InputCheckTests
     {
-        /// <summary>
-        /// 
-        /// </summary>
         [TestMethod()]
         public void ContainsHalfWidthAlpthabetTest()
         {
@@ -122,6 +119,7 @@ namespace Common.Tests
 
             target = "";
             Assert.AreNotEqual(true, InputCheck.ContainsHalfWidthSybol(target));
+
         }
 
         [TestMethod()]

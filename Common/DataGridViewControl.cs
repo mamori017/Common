@@ -4,17 +4,8 @@ using System.Windows.Forms;
 
 namespace Common
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class DataGridViewControl
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="dataGridView"></param>
-        /// <param name="cellPos"></param>
         public static void ChangeCheckState(Object sender,DataGridView dataGridView, int cellPos = 0)
         {
             Button btn = (Button)sender;
@@ -56,12 +47,6 @@ namespace Common
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dataGridView"></param>
-        /// <param name="cellPos"></param>
-        /// <returns></returns>
         public static bool CheckboxSelectState(DataGridView dataGridView, int cellPos = 0)
         {
             try
@@ -87,12 +72,6 @@ namespace Common
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dataGridView"></param>
-        /// <param name="cellPos"></param>
-        /// <returns></returns>
         public static string[] GetCheckboxSelectValue(DataGridView dataGridView, int cellPos = 0)
         {
             String[] strId = null;
@@ -119,11 +98,6 @@ namespace Common
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dataGridView"></param>
-        /// <param name="firstCellTarget"></param>
         public static void ChangeReadOnlyCell(DataGridView dataGridView, bool firstCellTarget = false)
         {
             try
@@ -145,11 +119,6 @@ namespace Common
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dataGridView"></param>
-        /// <param name="filterQuery"></param>
         public static void FilterViewChange(DataGridView dataGridView, String filterQuery)
         {
             BindingSource objBind;
@@ -179,14 +148,6 @@ namespace Common
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="objDataTable"></param>
-        /// <param name="objDataGridView"></param>
-        /// <param name="vblnCheckFlg"></param>
-        /// <param name="checkFlgOrdinal"></param>
-        /// <returns></returns>
         public static bool CreateDataGridView(DataTable objDataTable, DataGridView objDataGridView , bool vblnCheckFlg = false, int checkFlgOrdinal = 0)
         {
             DataGridViewCheckBoxColumn objColumn = null;

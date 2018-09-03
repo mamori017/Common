@@ -7,9 +7,6 @@ namespace Common.Tests
     [TestClass()]
     public class JsonTests
     {
-        /// <summary>
-        /// GetJsonDictionaryTest
-        /// </summary>
         [TestMethod()]
         public void GetJsonDictionaryTest()
         {
@@ -18,9 +15,6 @@ namespace Common.Tests
             Assert.AreEqual(ret["pinpointLocations"][0]["name"].ToString(),"大牟田市");
         }
 
-        /// <summary>
-        /// GetJsonDictionaryExceptionTest
-        /// </summary>
         [TestMethod()]
         [ExpectedException(typeof(AggregateException))]
         public void GetJsonDictionaryExceptionTest()

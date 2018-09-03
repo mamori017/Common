@@ -2,14 +2,8 @@
 
 namespace Common
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public static class Log
     {
-        /// <summary>
-        /// 
-        /// </summary>
         public static void Output(String outputDetail, String filePath, String fileName)
         {
             if (IO.DirectoryCheck(filePath, true))
@@ -18,9 +12,6 @@ namespace Common
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public static void ExceptionOutput(Exception ex, String filePath, String fileName)
         {
             String outputDetail = "";

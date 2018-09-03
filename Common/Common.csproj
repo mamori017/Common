@@ -54,14 +54,15 @@
     <Compile Include="ArrayEdit.cs" />
     <Compile Include="DataGridViewControl.cs" />
     <Compile Include="DateEdit.cs" />
+    <Compile Include="DaylightSavingTimeInfo.cs" />
     <Compile Include="InputCheck.cs" />
     <Compile Include="IO.cs" />
     <Compile Include="Json.cs" />
     <Compile Include="Log.cs" />
-    <Compile Include="Mail.cs" />
     <Compile Include="Notification.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Smtp.cs" />
     <Compile Include="SQLServer.cs" />
     <Compile Include="Tax.cs" />
   </ItemGroup>

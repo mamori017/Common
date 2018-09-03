@@ -8,9 +8,6 @@ namespace Common.Tests
     [TestClass()]
     public class IOTests
     {
-        /// <summary>
-        /// DirectoryCheckOnlyTest
-        /// </summary>
         [TestMethod()]
         public void DirectoryCheckOnlyTest()
         {
@@ -26,9 +23,6 @@ namespace Common.Tests
             DirectoryCheckTestAfterProcess();
         }
 
-        /// <summary>
-        /// DirectoryCheckAndCreateNewOneTest
-        /// </summary>
         [TestMethod()]
         public void DirectoryCheckAndCreateNewOneTest()
         {
@@ -43,9 +37,6 @@ namespace Common.Tests
             DirectoryCheckTestAfterProcess();
         }
 
-        /// <summary>
-        /// DirectoryCheckTargetExist
-        /// </summary>
         [TestMethod()]
         public void DirectoryCheckTargetExist()
         {
@@ -60,9 +51,6 @@ namespace Common.Tests
             DirectoryCheckTestAfterProcess();
         }
 
-        /// <summary>
-        /// DirectoryCheckArgumentException
-        /// </summary>
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException))]
         public void DirectoryCheckArgumentException()
@@ -87,9 +75,6 @@ namespace Common.Tests
             }
         }
 
-        /// <summary>
-        /// DirectoryCheckTestAfterProcess
-        /// </summary>
         private void DirectoryCheckTestAfterProcess()
         {
             // Delete test object
@@ -99,9 +84,6 @@ namespace Common.Tests
             }
         }
 
-        /// <summary>
-        /// CreateTextFileTest
-        /// </summary>
         [TestMethod()]
         public void CreateTextFileTest()
         {
@@ -144,9 +126,6 @@ namespace Common.Tests
                                                    Settings.Default.IOFileName);
         }
 
-        /// <summary>
-        /// CreateTextFileIOExceptionTest
-        /// </summary>
         [TestMethod()]
         [ExpectedException(typeof(IOException))]
         public void CreateTextFileIOExceptionTest()

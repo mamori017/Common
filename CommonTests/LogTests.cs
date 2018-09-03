@@ -8,9 +8,6 @@ namespace Common.Tests
     [TestClass()]
     public class LogTests
     {
-        /// <summary>
-        /// OutputTest
-        /// </summary>
         [TestMethod()]
         public void OutputTest()
         {
@@ -21,9 +18,6 @@ namespace Common.Tests
             Assert.AreEqual(true,File.Exists(Settings.Default.LogFilePath + "\\" + Settings.Default.LogFileName));
         }
 
-        /// <summary>
-        /// ExceptionOutputTest
-        /// </summary>
         [TestMethod()]
         public void ExceptionOutputTest()
         {

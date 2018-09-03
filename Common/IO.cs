@@ -4,16 +4,8 @@ using System.Text;
 
 namespace Common
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public static class IO
     {
-        /// <summary>
-        /// </summary>
-        /// <param name="directoryPath"></param>
-        /// <param name="makeDir"></param>
-        /// <returns></returns>
         public static bool DirectoryCheck(string directoryPath, bool makeDir = false)
         {
             try
@@ -37,24 +29,12 @@ namespace Common
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public enum EncodeType
         {
             utf8,
             sjis
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="fileName"></param>
-        /// <param name="outputString"></param>
-        /// <param name="append"></param>
-        /// <param name="encode"></param>
-        /// <returns></returns>
         public static bool CreateTextFile(string filePath, string fileName, string outputString, bool append = true, EncodeType encode = EncodeType.utf8)
         {
 
@@ -66,7 +46,6 @@ namespace Common
             {
                 DirectoryCheck(filePath, true);
 
-                // Set text file full path
                 if (filePath.Substring(filePath.Length - 1) != "\\")
                 {
                     outputFilePath = filePath + "\\" + fileName;
@@ -76,7 +55,6 @@ namespace Common
                     outputFilePath = filePath + fileName;
                 }
 
-                // Encode type
                 if (encode == EncodeType.sjis)
                 {
                     objEncoding = Encoding.GetEncoding(932);
@@ -86,7 +64,6 @@ namespace Common
                     objEncoding = Encoding.UTF8;
                 }
 
-                // Stream
                 objWriter = new StreamWriter(outputFilePath, append, objEncoding);
 
                 objWriter.Write(outputString);

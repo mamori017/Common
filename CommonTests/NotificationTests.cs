@@ -7,9 +7,6 @@ namespace Common.Tests
     [TestClass()]
     public class NotificationTests
     {
-        /// <summary>
-        /// ShowNotifyTest
-        /// </summary>
         [TestMethod()]
         public void ShowNotifyTest()
         {

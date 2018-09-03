@@ -4,17 +4,8 @@ using Windows.UI.Notifications;
 
 namespace Common
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public static class Notification
     {
-        /// <summary>
-        /// </summary>
-        /// <param name="strLine_1"></param>
-        /// <param name="strLine_2"></param>
-        /// <param name="strProductName"></param>
-        /// <param name="iconPath"></param>
         public static void ShowNotify(String strLine_1, string strLine_2, string strProductName, string iconPath)
         {
             try

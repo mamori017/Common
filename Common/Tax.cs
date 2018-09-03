@@ -2,44 +2,15 @@
 
 namespace Common
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class Tax
     {
-        /// <summary>
-        /// 
-        /// </summary>
         private int OldTax { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         private int NewTax { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         private int ReducedTax { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public DateTime NewTaxStartDate { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public int ApplyTax { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public DateTime TargetDate { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public enum ItemType
         {
             Food,
@@ -49,10 +20,6 @@ namespace Common
             Other
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dateTime"></param>
         public Tax(DateTime dateTime)
         {
             OldTax = 8;
@@ -62,13 +29,6 @@ namespace Common
             TargetDate = dateTime;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="price"></param>
-        /// <param name="itemType"></param>
-        /// <param name="issuePerWeek"></param>
-        /// <returns></returns>
         public double TaxInPrice(int price,  ItemType itemType, int issuePerWeek = 0)
         {
             double ret = 0;
@@ -85,23 +45,11 @@ namespace Common
             return ret;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="price"></param>
-        /// <param name="itemType"></param>
-        /// <returns></returns>
         public double FoodTax(int price, ItemType itemType)
         {
             return Math.Floor(price + (price * (FoodTax(itemType) / 100)));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="eatOut"></param>
-        /// <param name="itemType"></param>
-        /// <returns></returns>
         public double FoodTax(ItemType itemType)
         {
             if (TargetDate >= NewTaxStartDate)
@@ -123,22 +71,11 @@ namespace Common
             return ApplyTax;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="price"></param>
-        /// <param name="issuePerWeek"></param>
-        /// <returns></returns>
         public double NewsPaperTax(int price, int issuePerWeek)
         {
             return Math.Floor(price + (price * (NewsPaperTax(issuePerWeek) / 100)));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="issuePerWeek"></param>
-        /// <returns></returns>
         public double NewsPaperTax(int issuePerWeek)
         {
             if (TargetDate >= NewTaxStartDate)

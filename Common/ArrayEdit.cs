@@ -3,16 +3,8 @@ using System.Collections;
 
 namespace Common
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public static class ArrayEdit
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="strArray"></param>
-        /// <returns></returns>
         public static string[] ArraySortWithExceptDuplication(String[] strArray)
         {
             string[] ret = null;

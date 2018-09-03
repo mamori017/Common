@@ -4,15 +4,8 @@ using System.Windows.Forms;
 
 namespace Common
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public static class Process
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="strProductName"></param>
         public static void ExcludeMultipleStartUp(string strProductName)
         {
             Mutex objMutex = new Mutex(false, strProductName);

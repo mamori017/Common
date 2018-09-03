@@ -9,10 +9,6 @@ namespace Common.Tests
     [TestClass()]
     public class SQLServerTests
     {
-        /// <summary>
-        /// TestEnvJudge
-        /// </summary>
-        /// <returns></returns>
         private SQLServer TestEnvJudge()
         {
             SQLServer objDB = null;
@@ -21,23 +17,23 @@ namespace Common.Tests
             {
                 string hostname = Dns.GetHostName();
 
-                IPAddress[] adrList = Dns.GetHostAddresses(hostname);
-                foreach (IPAddress address in adrList)
-                {
-                    if (address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                    {
-                        String[] appVeyorEnv = Settings.Default.AppveyorBuildEnv.Split(',');
+                //IPAddress[] adrList = Dns.GetHostAddresses(hostname);
+                //foreach (IPAddress address in adrList)
+                //{
+                //    if (address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                //    {
+                //        String[] appVeyorEnv = Settings.Default.AppveyorBuildEnv.Split(',');
 
-                        if (Array.IndexOf(appVeyorEnv, address) > 0)
-                        {
-                            objDB = new SQLServer(Settings.Default.AppveyorSqlServerName,
-                                                  "",
-                                                  Settings.Default.AppveyorSqlServerUser,
-                                                  Settings.Default.AppveyorSqlServerPw);
-                            return objDB;
-                        }
-                    }
-                }
+                //        if (Array.IndexOf(appVeyorEnv, address) > 0)
+                //        {
+                //            objDB = new SQLServer(Settings.Default.AppveyorSqlServerName,
+                //                                  "",
+                //                                  Settings.Default.AppveyorSqlServerUser,
+                //                                  Settings.Default.AppveyorSqlServerPw);
+                //            return objDB;
+                //        }
+                //    }
+                //}
 
                 objDB = new SQLServer(Settings.Default.SqlServerName,
                                       "",
@@ -53,9 +49,6 @@ namespace Common.Tests
             }
         }
 
-        /// <summary>
-        /// ConnectTest
-        /// </summary>
         [TestMethod()]
         public void ConnectTest()
         {
@@ -76,9 +69,6 @@ namespace Common.Tests
 
         }
 
-        /// <summary>
-        /// DisconnectTest
-        /// </summary>
         [TestMethod()]
         public void DisconnectTest()
         {
@@ -100,9 +90,6 @@ namespace Common.Tests
             }
         }
 
-        /// <summary>
-        /// BeginTransTest
-        /// </summary>
         [TestMethod()]
         public void BeginTransTest()
         {
@@ -130,9 +117,6 @@ namespace Common.Tests
             }
         }
 
-        /// <summary>
-        /// RollBackTest
-        /// </summary>
         [TestMethod()]
         public void RollBackTest()
         {
@@ -160,9 +144,6 @@ namespace Common.Tests
             }
         }
 
-        /// <summary>
-        /// ChangeDataTest
-        /// </summary>
         [TestMethod()]
         public void ChangeDataTest()
         {
@@ -192,9 +173,6 @@ namespace Common.Tests
             }
         }
 
-        /// <summary>
-        /// CreateAndDropTableTest
-        /// </summary>
         [TestMethod()]
         public void CreateAndDropTableTest()
         {
@@ -227,9 +205,6 @@ namespace Common.Tests
 
         }
 
-        /// <summary>
-        /// GetDataTest
-        /// </summary>
         [TestMethod()]
         public void GetDataTest()
         {
@@ -243,6 +218,35 @@ namespace Common.Tests
                     if (objDB.Connect())
                     {
                         DataTable dataTable = objDB.GetData("SELECT * FROM get_test");
+                    }
+                }
+            }
+            finally
+            {
+                if (objDB.Connect())
+                {
+                    objDB.Disconnect();
+                }
+                objDB = null;
+            }
+        }
+
+        [TestMethod()]
+        public void GetTableLockInfoTest()
+        {
+            SQLServer objDB = null;
+
+            try
+            {
+                objDB = TestEnvJudge();
+                if (objDB != null)
+                {
+                    if (objDB.Connect())
+                    {
+                        objDB.BeginTrans();
+                        objDB.ChangeData("insert into get_test values (NEXT VALUE FOR get_test_sequence,'','',SYSDATETIME(),SYSDATETIMEOFFSET())");
+                        Assert.AreNotEqual(true, objDB.GetTableLockInfo("get_test"));
+                        objDB.RollBack();
                     }
                 }
             }
