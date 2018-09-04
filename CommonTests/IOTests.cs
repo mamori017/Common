@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using CommonTests.Properties;
 
 namespace Common.Tests
 {
@@ -12,12 +13,12 @@ namespace Common.Tests
         {
             // Directory not exist
             // Directory check only
-            if (Directory.Exists(CommonTests.Properties.Settings.Default.IODirectoryPath))
+            if (Directory.Exists(Settings.Default.IODirectoryPath))
             {
-                Directory.Delete(CommonTests.Properties.Settings.Default.IODirectoryPath);
+                Directory.Delete(Settings.Default.IODirectoryPath);
             }
 
-            Assert.AreEqual(true, IO.DirectoryCheck(CommonTests.Properties.Settings.Default.IODirectoryPath));
+            Assert.AreEqual(true, IO.DirectoryCheck(Settings.Default.IODirectoryPath));
 
             DirectoryCheckTestAfterProcess();
         }
@@ -28,9 +29,9 @@ namespace Common.Tests
             // Directory not exist
             // Directory check and create new one
 
-            if (IO.DirectoryCheck(CommonTests.Properties.Settings.Default.IODirectoryPath, true))
+            if (IO.DirectoryCheck(Settings.Default.IODirectoryPath, true))
             {
-                Assert.AreEqual(true, Directory.Exists(CommonTests.Properties.Settings.Default.IODirectoryPath));
+                Assert.AreEqual(true, Directory.Exists(Settings.Default.IODirectoryPath));
             }
 
             DirectoryCheckTestAfterProcess();
@@ -40,33 +41,33 @@ namespace Common.Tests
         public void DirectoryCheckTargetExist()
         {
             // Directory exist
-            if (!Directory.Exists(CommonTests.Properties.Settings.Default.IODirectoryPath))
+            if (!Directory.Exists(Settings.Default.IODirectoryPath))
             {
-                Directory.CreateDirectory(CommonTests.Properties.Settings.Default.IODirectoryPath);
+                Directory.CreateDirectory(Settings.Default.IODirectoryPath);
             }
 
-            Assert.AreEqual(false, IO.DirectoryCheck(CommonTests.Properties.Settings.Default.IODirectoryPath));
+            Assert.AreEqual(false, IO.DirectoryCheck(Settings.Default.IODirectoryPath));
 
             DirectoryCheckTestAfterProcess();
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(System.ArgumentException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void DirectoryCheckArgumentException()
         {
             try
             {
                 // Directory exist
-                if (!Directory.Exists(CommonTests.Properties.Settings.Default.IODirectoryPath))
+                if (!Directory.Exists(Settings.Default.IODirectoryPath))
                 {
-                    Directory.CreateDirectory(CommonTests.Properties.Settings.Default.IODirectoryPath);
+                    Directory.CreateDirectory(Settings.Default.IODirectoryPath);
                 }
                 else
                 {
-                    Directory.Delete(CommonTests.Properties.Settings.Default.IODirectoryPath, true);
+                    Directory.Delete(Settings.Default.IODirectoryPath, true);
                 }
 
-                IO.DirectoryCheck("?" + CommonTests.Properties.Settings.Default.IODirectoryPath, true);
+                IO.DirectoryCheck("?" + Settings.Default.IODirectoryPath, true);
             }
             finally
             {
@@ -77,46 +78,43 @@ namespace Common.Tests
         private void DirectoryCheckTestAfterProcess()
         {
             // Delete test object
-            if (Directory.Exists(CommonTests.Properties.Settings.Default.IODirectoryPath))
+            if (Directory.Exists(Settings.Default.IODirectoryPath))
             {
-                Directory.Delete(CommonTests.Properties.Settings.Default.IODirectoryPath,true);
+                Directory.Delete(Settings.Default.IODirectoryPath,true);
             }
         }
-
-       
-
 
         [TestMethod()]
         public void CreateTextFileTest()
         {
             // Delete test object
-            if (Directory.Exists(CommonTests.Properties.Settings.Default.IODirectoryPath))
+            if (Directory.Exists(Settings.Default.IODirectoryPath))
             {
-                Directory.Delete(CommonTests.Properties.Settings.Default.IODirectoryPath,true);
+                Directory.Delete(Settings.Default.IODirectoryPath,true);
             }
 
-            Assert.AreEqual(true, IO.CreateTextFile(CommonTests.Properties.Settings.Default.IOFilePath,
-                                                    CommonTests.Properties.Settings.Default.IOFileName,
+            Assert.AreEqual(true, IO.CreateTextFile(Settings.Default.IOFilePath,
+                                                    Settings.Default.IOFileName,
                                                     "test",
                                                     false,
                                                     IO.EncodeType.sjis));
 
-            Assert.AreEqual(true, IO.CreateTextFile(CommonTests.Properties.Settings.Default.IOFilePath,
-                                                    CommonTests.Properties.Settings.Default.IOFileName,
+            Assert.AreEqual(true, IO.CreateTextFile(Settings.Default.IOFilePath,
+                                                    Settings.Default.IOFileName,
                                                     "test",
                                                     true,
                                                     IO.EncodeType.utf8));
 
-            Assert.AreEqual(true, IO.CreateTextFile(CommonTests.Properties.Settings.Default.IOFilePath + "\\",
-                                                    CommonTests.Properties.Settings.Default.IOFileName,
+            Assert.AreEqual(true, IO.CreateTextFile(Settings.Default.IOFilePath + "\\",
+                                                    Settings.Default.IOFileName,
                                                     "test",
                                                     true,
                                                     IO.EncodeType.utf8));
 
 
 
-            StreamReader reader = new StreamReader(CommonTests.Properties.Settings.Default.IOFilePath + "\\" + 
-                                                   CommonTests.Properties.Settings.Default.IOFileName);
+            StreamReader reader = new StreamReader(Settings.Default.IOFilePath + "\\" + 
+                                                   Settings.Default.IOFileName);
 
             String a = reader.ReadToEnd();
 
@@ -124,37 +122,37 @@ namespace Common.Tests
 
             reader.Close();
 
-            File.Delete(CommonTests.Properties.Settings.Default.IOFilePath + "\\" +
-                                                   CommonTests.Properties.Settings.Default.IOFileName);
+            File.Delete(Settings.Default.IOFilePath + "\\" +
+                                                   Settings.Default.IOFileName);
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(System.IO.IOException))]
+        [ExpectedException(typeof(IOException))]
         public void CreateTextFileIOExceptionTest()
         {
             StreamReader reader = null;
 
             // Delete test object
-            if (Directory.Exists(CommonTests.Properties.Settings.Default.IODirectoryPath))
+            if (Directory.Exists(Settings.Default.IODirectoryPath))
             {
-                Directory.Delete(CommonTests.Properties.Settings.Default.IODirectoryPath, true);
+                Directory.Delete(Settings.Default.IODirectoryPath, true);
             }
 
-            Assert.AreEqual(true, IO.CreateTextFile(CommonTests.Properties.Settings.Default.IOFilePath,
-                  CommonTests.Properties.Settings.Default.IOFileName,
+            Assert.AreEqual(true, IO.CreateTextFile(Settings.Default.IOFilePath,
+                  Settings.Default.IOFileName,
                   "test",
                   false,
                   IO.EncodeType.utf8));
 
             try
             {
-                reader = new StreamReader(CommonTests.Properties.Settings.Default.IOFilePath + "\\" +
-                                                       CommonTests.Properties.Settings.Default.IOFileName);
+                reader = new StreamReader(Settings.Default.IOFilePath + "\\" +
+                                                       Settings.Default.IOFileName);
 
                 String a = reader.ReadToEnd();
 
-                IO.CreateTextFile(CommonTests.Properties.Settings.Default.IOFilePath,
-                      CommonTests.Properties.Settings.Default.IOFileName,
+                IO.CreateTextFile(Settings.Default.IOFilePath,
+                      Settings.Default.IOFileName,
                       "test",
                       false,
                       IO.EncodeType.utf8);
@@ -164,7 +162,7 @@ namespace Common.Tests
                 if(reader != null)
                 {
                     reader.Close();
-                    Directory.Delete(CommonTests.Properties.Settings.Default.IODirectoryPath, true);
+                    Directory.Delete(Settings.Default.IODirectoryPath, true);
                 }
             }
 

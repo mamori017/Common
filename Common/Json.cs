@@ -7,11 +7,6 @@ namespace Common
 {
     public static class Json
     {
-        /// <summary>
-        /// GetJsonDictionary
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         public static JObject GetJsonObject(String strUrl)
         {
             try

@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Common
 {
-    public static class CommonArray
+    public static class ArrayEdit
     {
         public static string[] ArraySortWithExceptDuplication(String[] strArray)
         {

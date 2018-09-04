@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using CommonTests.Properties;
 
 namespace Common.Tests
 {
@@ -13,8 +14,8 @@ namespace Common.Tests
             {
                 Notification.ShowNotify("test1", 
                                         "test2", 
-                                        CommonTests.Properties.Settings.Default.NotificationAppID,
-                                        CommonTests.Properties.Settings.Default.NotificationIconPath);
+                                        Settings.Default.NotificationAppID,
+                                        Settings.Default.NotificationIconPath);
 
                 Assert.IsTrue(true);
             }

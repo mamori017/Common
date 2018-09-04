@@ -51,6 +51,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="Windows, Version=255.255.255.255, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral\Annotated\Windows.winmd</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -61,8 +65,10 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="ArrayTests.cs" />
+    <Compile Include="ArrayEditTests.cs" />
     <Compile Include="DateEditTests.cs" />
+    <Compile Include="DaylightSavingTimeInfoTests.cs" />
+    <Compile Include="InputCheckTests.cs" />
     <Compile Include="IOTests.cs" />
     <Compile Include="JsonTests.cs" />
     <Compile Include="LogTests.cs" />
@@ -73,7 +79,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SmtpTests.cs" />
     <Compile Include="SQLServerTests.cs" />
+    <Compile Include="TaxTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

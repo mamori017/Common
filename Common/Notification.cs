@@ -6,9 +6,6 @@ namespace Common
 {
     public static class Notification
     {
-        /// <summary>
-        /// ShowNotify
-        /// </summary>
         public static void ShowNotify(String strLine_1, string strLine_2, string strProductName, string iconPath)
         {
             try

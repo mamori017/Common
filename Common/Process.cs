@@ -6,9 +6,6 @@ namespace Common
 {
     public static class Process
     {
-        /// <summary>
-        /// Multiple start check
-        /// </summary>
         public static void ExcludeMultipleStartUp(string strProductName)
         {
             Mutex objMutex = new Mutex(false, strProductName);

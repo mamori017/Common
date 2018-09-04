@@ -3,7 +3,7 @@
 namespace Common.Tests
 {
     [TestClass()]
-    public class ArrayTests
+    public class ArrayEditTests
     {
         [TestMethod()]
         public void ArraySortTest()
@@ -11,7 +11,7 @@ namespace Common.Tests
             string[] testSample = {"Tue", "Thu", "Mon", "Sun", "Fri", "Wed", "Sat"};
             string[] resultSample = { "Fri", "Mon", "Sat", "Sun", "Thu", "Tue", "Wed" };
 
-            string[] testResult = CommonArray.ArraySortWithExceptDuplication(testSample);
+            string[] testResult = ArrayEdit.ArraySortWithExceptDuplication(testSample);
 
             if(testResult.Length != testSample.Length)
             {
@@ -36,13 +36,12 @@ namespace Common.Tests
             string[] testSample = { "Wed", "Tue", "Thu", "Thu", "Thu", "Mon", "Sun", "Mon", "Fri", "Wed", "Sat" };
             string[] resultSample = { "Fri", "Mon", "Sat", "Sun", "Thu", "Tue", "Wed" };
 
-            string[] testResult = CommonArray.ArraySortWithExceptDuplication(testSample);
+            string[] testResult = ArrayEdit.ArraySortWithExceptDuplication(testSample);
 
             if (testResult.Length != 7)
             {
                 Assert.Fail();
             }
-
 
             for (int i = 0; i < testResult.Length; i++)
             {
