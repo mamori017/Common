@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CommonTests.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,29 @@ namespace Common.Tests
         string[] AttachArray = {@"", @""};
 
         [TestMethod()]
+        public void SendGridMultipleToTest()
+        {
+            SendMail.UseSendGrid mail = new SendMail.UseSendGrid();
+            mail.ApiKey = Settings.Default.SendGridApiKey;
+            mail.SetSender(Settings.Default.SendGridSendToAddress, Settings.Default.SendGridSendToName);
+
+            List<SendGrid.Helpers.Mail.EmailAddress> to = new List<SendGrid.Helpers.Mail.EmailAddress>();
+            for (int i = 0; i < 5; i++)
+            {
+                to.Add(new SendGrid.Helpers.Mail.EmailAddress(Settings.Default.SendGridSendToAddress,
+                                                              Settings.Default.SendGridSendToName + "_" + i));
+            }
+            mail.SetRecipientTo(to);
+            mail.SetMailDetail(Settings.Default.SendGridSubject, Settings.Default.SendGridBody);
+            System.Net.HttpStatusCode ret = mail.Send();
+
+            Assert.AreEqual(ret.ToString(), "Accepted");
+        }
+
+        [TestMethod()]
         public void SendTest()
         {
-            Smtp mail = new Smtp();
+            SendMail.UseSmtp mail = new SendMail.UseSmtp();
             mail.SetServerDetail(Server, Port);
             mail.SetSender(From, FromName);
             mail.SetRecipientTo(To, ToName);
@@ -40,25 +61,25 @@ namespace Common.Tests
             mail.SetAttachments(Attach);
             mail.SetMailDetail(Subject, Body);
             mail.SetNotify(System.Net.Mail.DeliveryNotificationOptions.None);
-            mail.MailSend();
+            mail.Send();
             mail.Dispose();
 
-            mail = new Smtp();
+            mail = new SendMail.UseSmtp();
             mail.SetServerDetail(Server, Port);
             mail.SetSender(From, FromName);
             mail.SetRecipientTo(To, ToName);
             mail.SetMailDetail(Subject, Body);
-            mail.MailSend();
+            mail.Send();
             mail.Dispose();
             
-            mail = new Smtp();
+            mail = new SendMail.UseSmtp();
             mail.SetServerDetail(Server, Port);
             mail.SetSender(From, FromName);
             mail.SetRecipientBcc(Bcc, BccName);
             mail.SetAttachments(Attach);
             mail.SetMailDetail(Subject, Body);
             mail.SetNotify(System.Net.Mail.DeliveryNotificationOptions.None);
-            mail.MailSend();
+            mail.Send();
             mail.Dispose();
 
             Assert.AreEqual(true,true);
@@ -67,7 +88,7 @@ namespace Common.Tests
         [TestMethod()]
         public void MultiUserSendTest()
         {
-            Smtp mail = new Smtp();
+            SendMail.UseSmtp mail = new SendMail.UseSmtp();
             mail.SetServerDetail(Server, Port);
             mail.SetSender(From, FromName);
 
@@ -88,7 +109,7 @@ namespace Common.Tests
 
             mail.SetMailDetail(Subject, Body);
             mail.SetNotify(System.Net.Mail.DeliveryNotificationOptions.None);
-            mail.MailSend();
+            mail.Send();
             mail.Dispose();
             Assert.AreEqual(true, true);
         }

@@ -56,5 +56,20 @@
     <Setting Name="JsonUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://weather.livedoor.com/forecast/webservice/json/v1?city=400040</Value>
     </Setting>
+    <Setting Name="SendGridApiKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SendGridSendToAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SendGridSendToName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SendGridSubject" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Test Mail</Value>
+    </Setting>
+    <Setting Name="SendGridBody" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Test Mail</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

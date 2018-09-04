@@ -239,5 +239,65 @@ namespace CommonTests.Properties {
                 this["JsonUrl"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SendGridApiKey {
+            get {
+                return ((string)(this["SendGridApiKey"]));
+            }
+            set {
+                this["SendGridApiKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SendGridSendToAddress {
+            get {
+                return ((string)(this["SendGridSendToAddress"]));
+            }
+            set {
+                this["SendGridSendToAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SendGridSendToName {
+            get {
+                return ((string)(this["SendGridSendToName"]));
+            }
+            set {
+                this["SendGridSendToName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Test Mail")]
+        public string SendGridSubject {
+            get {
+                return ((string)(this["SendGridSubject"]));
+            }
+            set {
+                this["SendGridSubject"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Test Mail")]
+        public string SendGridBody {
+            get {
+                return ((string)(this["SendGridBody"]));
+            }
+            set {
+                this["SendGridBody"] = value;
+            }
+        }
     }
 }

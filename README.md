@@ -14,10 +14,6 @@ Class library of me, by me, for me. Maybe useless for others.
 
 This is "Kuso".
 
-## Requirement
-
-![20180731120000](https://cacoo.com/diagrams/hNLPmhZ3hvlOs9tD-43B31.png)
-
 ## Licence
 
 [MIT](https://github.com/mamori017/Common/blob/master/LICENSE)

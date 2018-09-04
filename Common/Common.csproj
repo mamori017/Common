@@ -62,7 +62,7 @@
     <Compile Include="Notification.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Smtp.cs" />
+    <Compile Include="SendMail.cs" />
     <Compile Include="SQLServer.cs" />
     <Compile Include="Tax.cs" />
   </ItemGroup>
