@@ -13,12 +13,12 @@ namespace Common.Tests
         {
             // Directory not exist
             // Directory check only
-            if (Directory.Exists(Settings.Default.IODirectoryPath))
+            if (Directory.Exists(IoSettings.Default.IODirectoryPath))
             {
-                Directory.Delete(Settings.Default.IODirectoryPath);
+                Directory.Delete(IoSettings.Default.IODirectoryPath);
             }
 
-            Assert.AreEqual(true, IO.DirectoryCheck(Settings.Default.IODirectoryPath));
+            Assert.AreEqual(true, IO.DirectoryCheck(IoSettings.Default.IODirectoryPath));
 
             DirectoryCheckTestAfterProcess();
         }
@@ -29,9 +29,9 @@ namespace Common.Tests
             // Directory not exist
             // Directory check and create new one
 
-            if (IO.DirectoryCheck(Settings.Default.IODirectoryPath, true))
+            if (IO.DirectoryCheck(IoSettings.Default.IODirectoryPath, true))
             {
-                Assert.AreEqual(true, Directory.Exists(Settings.Default.IODirectoryPath));
+                Assert.AreEqual(true, Directory.Exists(IoSettings.Default.IODirectoryPath));
             }
 
             DirectoryCheckTestAfterProcess();
@@ -41,12 +41,12 @@ namespace Common.Tests
         public void DirectoryCheckTargetExist()
         {
             // Directory exist
-            if (!Directory.Exists(Settings.Default.IODirectoryPath))
+            if (!Directory.Exists(IoSettings.Default.IODirectoryPath))
             {
-                Directory.CreateDirectory(Settings.Default.IODirectoryPath);
+                Directory.CreateDirectory(IoSettings.Default.IODirectoryPath);
             }
 
-            Assert.AreEqual(false, IO.DirectoryCheck(Settings.Default.IODirectoryPath));
+            Assert.AreEqual(false, IO.DirectoryCheck(IoSettings.Default.IODirectoryPath));
 
             DirectoryCheckTestAfterProcess();
         }
@@ -58,16 +58,16 @@ namespace Common.Tests
             try
             {
                 // Directory exist
-                if (!Directory.Exists(Settings.Default.IODirectoryPath))
+                if (!Directory.Exists(IoSettings.Default.IODirectoryPath))
                 {
-                    Directory.CreateDirectory(Settings.Default.IODirectoryPath);
+                    Directory.CreateDirectory(IoSettings.Default.IODirectoryPath);
                 }
                 else
                 {
-                    Directory.Delete(Settings.Default.IODirectoryPath, true);
+                    Directory.Delete(IoSettings.Default.IODirectoryPath, true);
                 }
 
-                IO.DirectoryCheck("?" + Settings.Default.IODirectoryPath, true);
+                IO.DirectoryCheck("?" + IoSettings.Default.IODirectoryPath, true);
             }
             finally
             {
@@ -78,9 +78,9 @@ namespace Common.Tests
         private void DirectoryCheckTestAfterProcess()
         {
             // Delete test object
-            if (Directory.Exists(Settings.Default.IODirectoryPath))
+            if (Directory.Exists(IoSettings.Default.IODirectoryPath))
             {
-                Directory.Delete(Settings.Default.IODirectoryPath,true);
+                Directory.Delete(IoSettings.Default.IODirectoryPath,true);
             }
         }
 
@@ -88,33 +88,33 @@ namespace Common.Tests
         public void CreateTextFileTest()
         {
             // Delete test object
-            if (Directory.Exists(Settings.Default.IODirectoryPath))
+            if (Directory.Exists(IoSettings.Default.IODirectoryPath))
             {
-                Directory.Delete(Settings.Default.IODirectoryPath,true);
+                Directory.Delete(IoSettings.Default.IODirectoryPath,true);
             }
 
-            Assert.AreEqual(true, IO.CreateTextFile(Settings.Default.IOFilePath,
-                                                    Settings.Default.IOFileName,
+            Assert.AreEqual(true, IO.CreateTextFile(IoSettings.Default.IOFilePath,
+                                                    IoSettings.Default.IOFileName,
                                                     "test",
                                                     false,
                                                     IO.EncodeType.sjis));
 
-            Assert.AreEqual(true, IO.CreateTextFile(Settings.Default.IOFilePath,
-                                                    Settings.Default.IOFileName,
+            Assert.AreEqual(true, IO.CreateTextFile(IoSettings.Default.IOFilePath,
+                                                    IoSettings.Default.IOFileName,
                                                     "test",
                                                     true,
                                                     IO.EncodeType.utf8));
 
-            Assert.AreEqual(true, IO.CreateTextFile(Settings.Default.IOFilePath + "\\",
-                                                    Settings.Default.IOFileName,
+            Assert.AreEqual(true, IO.CreateTextFile(IoSettings.Default.IOFilePath + "\\",
+                                                    IoSettings.Default.IOFileName,
                                                     "test",
                                                     true,
                                                     IO.EncodeType.utf8));
 
 
 
-            StreamReader reader = new StreamReader(Settings.Default.IOFilePath + "\\" + 
-                                                   Settings.Default.IOFileName);
+            StreamReader reader = new StreamReader(IoSettings.Default.IOFilePath + "\\" +
+                                                   IoSettings.Default.IOFileName);
 
             String a = reader.ReadToEnd();
 
@@ -122,8 +122,8 @@ namespace Common.Tests
 
             reader.Close();
 
-            File.Delete(Settings.Default.IOFilePath + "\\" +
-                                                   Settings.Default.IOFileName);
+            File.Delete(IoSettings.Default.IOFilePath + "\\" +
+                                                   IoSettings.Default.IOFileName);
         }
 
         [TestMethod()]
@@ -133,36 +133,36 @@ namespace Common.Tests
             StreamReader reader = null;
 
             // Delete test object
-            if (Directory.Exists(Settings.Default.IODirectoryPath))
+            if (Directory.Exists(IoSettings.Default.IODirectoryPath))
             {
-                Directory.Delete(Settings.Default.IODirectoryPath, true);
+                Directory.Delete(IoSettings.Default.IODirectoryPath, true);
             }
 
-            Assert.AreEqual(true, IO.CreateTextFile(Settings.Default.IOFilePath,
-                  Settings.Default.IOFileName,
+            Assert.AreEqual(true, IO.CreateTextFile(IoSettings.Default.IOFilePath,
+                  IoSettings.Default.IOFileName,
                   "test",
                   false,
                   IO.EncodeType.utf8));
 
             try
             {
-                reader = new StreamReader(Settings.Default.IOFilePath + "\\" +
-                                                       Settings.Default.IOFileName);
+                reader = new StreamReader(IoSettings.Default.IOFilePath + "\\" +
+                                          IoSettings.Default.IOFileName);
 
                 String a = reader.ReadToEnd();
 
-                IO.CreateTextFile(Settings.Default.IOFilePath,
-                      Settings.Default.IOFileName,
-                      "test",
-                      false,
-                      IO.EncodeType.utf8);
+                IO.CreateTextFile(IoSettings.Default.IOFilePath,
+                                  IoSettings.Default.IOFileName,
+                                  "test",
+                                  false,
+                                  IO.EncodeType.utf8);
             }
             finally
             {
                 if(reader != null)
                 {
                     reader.Close();
-                    Directory.Delete(Settings.Default.IODirectoryPath, true);
+                    Directory.Delete(IoSettings.Default.IODirectoryPath, true);
                 }
             }
 

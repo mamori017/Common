@@ -77,10 +77,35 @@
     <Compile Include="LogTests.cs" />
     <Compile Include="NotificationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
+    <Compile Include="Properties\IoSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
+      <DependentUpon>IoSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\JsonSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>JsonSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\LogSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>LogSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\NotificationSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>NotificationSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\SendMailSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>SendMailSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\SQLServerSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>SQLServerSettings.settings</DependentUpon>
     </Compile>
     <Compile Include="SendMailTests.cs" />
     <Compile Include="SQLServerTests.cs" />
@@ -89,9 +114,29 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
+    <None Include="Properties\IoSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <LastGenOutput>IoSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\JsonSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>JsonSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\LogSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>LogSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\NotificationSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>NotificationSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\SendMailSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SendMailSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\SQLServerSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SQLServerSettings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

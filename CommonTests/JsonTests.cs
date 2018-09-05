@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;
+using CommonTests.Properties;
 
 namespace Common.Tests
 {
@@ -10,7 +11,7 @@ namespace Common.Tests
         [TestMethod()]
         public void GetJsonDictionaryTest()
         {
-            JObject ret = Json.GetJsonObject(CommonTests.Properties.Settings.Default.JsonUrl);
+            JObject ret = Json.GetJsonObject(JsonSettings.Default.JsonUrl);
 
             Assert.AreEqual(ret["pinpointLocations"][0]["name"].ToString(),"大牟田市");
         }
@@ -19,7 +20,7 @@ namespace Common.Tests
         [ExpectedException(typeof(AggregateException))]
         public void GetJsonDictionaryExceptionTest()
         {
-            JObject jsonret = Json.GetJsonObject(CommonTests.Properties.Settings.Default.JsonUrl.Replace("400040","123456"));
+            JObject jsonret = Json.GetJsonObject(JsonSettings.Default.JsonUrl.Replace("400040","123456"));
 
 
         }

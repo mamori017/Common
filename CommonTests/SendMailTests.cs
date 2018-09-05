@@ -9,110 +9,267 @@ using System.Threading.Tasks;
 namespace Common.Tests
 {
     [TestClass()]
-    public class MailTests
+    public class SendMailTests
     {
-        string Server = @"";
-        int Port = 25;
-        string From = @"";
-        string FromName = "";
-        string To = "";
-        string ToName = "";
-        string[,] ToArray = { { "", "" }, { "", "" }};
-        string Cc = "";
-        string CcName = "";
-        string[,] CcArray = { { "", "" }, { "", "" }};
-        string Bcc = "";
-        string BccName = "";
-        string[,] BccArray = { { "", "" }, { "", "" }};
-        string Subject = "";
-        string Body = "";
-        string Attach = @"";
-        string[] AttachArray = {@"", @""};
-
-        [TestMethod()]
-        public void SendGridMultipleToTest()
+        [TestClass()]
+        public class UseSendGrid
         {
-            SendMail.UseSendGrid mail = new SendMail.UseSendGrid();
-            mail.ApiKey = Settings.Default.SendGridApiKey;
-            mail.SetSender(Settings.Default.SendGridSendToAddress, Settings.Default.SendGridSendToName);
-
-            List<SendGrid.Helpers.Mail.EmailAddress> to = new List<SendGrid.Helpers.Mail.EmailAddress>();
-            for (int i = 0; i < 5; i++)
+            [TestMethod()]
+            public void SendSingleTest()
             {
-                to.Add(new SendGrid.Helpers.Mail.EmailAddress(Settings.Default.SendGridSendToAddress,
-                                                              Settings.Default.SendGridSendToName + "_" + i));
-            }
-            mail.SetRecipientTo(to);
-            mail.SetMailDetail(Settings.Default.SendGridSubject, Settings.Default.SendGridBody);
-            System.Net.HttpStatusCode ret = mail.Send();
+                string method = "_SendSingleTest";
 
-            Assert.AreEqual(ret.ToString(), "Accepted");
-        }
+                SendMail.UseSendGrid mail = new SendMail.UseSendGrid
+                {
+                    ApiKey = SendMailSettings.Default.SendGridApiKey
+                };
 
-        [TestMethod()]
-        public void SendTest()
-        {
-            SendMail.UseSmtp mail = new SendMail.UseSmtp();
-            mail.SetServerDetail(Server, Port);
-            mail.SetSender(From, FromName);
-            mail.SetRecipientTo(To, ToName);
-            mail.SetRecipientCc(Cc, CcName);
-            mail.SetRecipientBcc(Bcc, BccName);
-            mail.SetAttachments(Attach);
-            mail.SetMailDetail(Subject, Body);
-            mail.SetNotify(System.Net.Mail.DeliveryNotificationOptions.None);
-            mail.Send();
-            mail.Dispose();
+                mail.SetSender(SendMailSettings.Default.From, SendMailSettings.Default.FromName);
 
-            mail = new SendMail.UseSmtp();
-            mail.SetServerDetail(Server, Port);
-            mail.SetSender(From, FromName);
-            mail.SetRecipientTo(To, ToName);
-            mail.SetMailDetail(Subject, Body);
-            mail.Send();
-            mail.Dispose();
-            
-            mail = new SendMail.UseSmtp();
-            mail.SetServerDetail(Server, Port);
-            mail.SetSender(From, FromName);
-            mail.SetRecipientBcc(Bcc, BccName);
-            mail.SetAttachments(Attach);
-            mail.SetMailDetail(Subject, Body);
-            mail.SetNotify(System.Net.Mail.DeliveryNotificationOptions.None);
-            mail.Send();
-            mail.Dispose();
+                mail.SetRecipientTo(SendMailSettings.Default.To, SendMailSettings.Default.ToName);
 
-            Assert.AreEqual(true,true);
-        }
+                mail.SetMailDetail(SendMailSettings.Default.Subject + method, SendMailSettings.Default.Body);
 
-        [TestMethod()]
-        public void MultiUserSendTest()
-        {
-            SendMail.UseSmtp mail = new SendMail.UseSmtp();
-            mail.SetServerDetail(Server, Port);
-            mail.SetSender(From, FromName);
-
-            int len = ToArray.GetLength(1);
-
-            for (int i = 0; i < ToArray.GetLength(0); i++)
-            {           
-                mail.SetRecipientTo(ToArray[i,0], ToArray[i, 1]);
+                Assert.AreEqual(mail.Send(), System.Net.HttpStatusCode.Accepted);
             }
 
-            for (int i = 0; i < CcArray.GetLength(0); i++)
+            [TestMethod()]
+            public void SendSingleWithAttachmentTest()
             {
-                mail.SetRecipientCc(CcArray[i, 0], CcArray[i, 1]);
+                string method = "_SendSingleWithAttachmentTest";
+
+                SendMail.UseSendGrid mail = new SendMail.UseSendGrid
+                {
+                    ApiKey = SendMailSettings.Default.SendGridApiKey
+                };
+
+                mail.SetSender(SendMailSettings.Default.From, SendMailSettings.Default.FromName);
+
+                mail.SetRecipientTo(SendMailSettings.Default.To, SendMailSettings.Default.ToName);
+
+                mail.SetMailDetail(SendMailSettings.Default.Subject + method, SendMailSettings.Default.Body);
+
+                mail.SetAttachment(SendMailSettings.Default.AttachmentPath_1);
+
+                Assert.AreEqual(mail.Send(), System.Net.HttpStatusCode.Accepted);
             }
 
+            [TestMethod()]
+            public void SendSingleWithAttachmentsTest()
+            {
+                string method = "_SendSingleWithAttachmentsTest";
 
-            mail.SetAttachments(AttachArray);
+                SendMail.UseSendGrid mail = new SendMail.UseSendGrid
+                {
+                    ApiKey = SendMailSettings.Default.SendGridApiKey
+                };
 
-            mail.SetMailDetail(Subject, Body);
-            mail.SetNotify(System.Net.Mail.DeliveryNotificationOptions.None);
-            mail.Send();
-            mail.Dispose();
-            Assert.AreEqual(true, true);
+                mail.SetSender(SendMailSettings.Default.From, SendMailSettings.Default.FromName);
+
+                mail.SetRecipientTo(SendMailSettings.Default.To, SendMailSettings.Default.ToName);
+
+                mail.SetMailDetail(SendMailSettings.Default.Subject + method, SendMailSettings.Default.Body);
+
+                List<string> attachments = new List<string>
+                {
+                    SendMailSettings.Default.AttachmentPath_1,
+                    SendMailSettings.Default.AttachmentPath_2,
+                    SendMailSettings.Default.AttachmentPath_3
+                };
+
+                mail.SetAttachment(attachments);
+
+                Assert.AreEqual(mail.Send(), System.Net.HttpStatusCode.Accepted);
+            }
+
+            [TestMethod()]
+            public void SendMultipleTest()
+            {
+                string method = "_SendMultipleTest";
+
+                SendMail.UseSendGrid mail = new SendMail.UseSendGrid
+                {
+                    ApiKey = SendMailSettings.Default.SendGridApiKey
+                };
+
+                mail.SetSender(SendMailSettings.Default.From, SendMailSettings.Default.FromName);
+
+                List<SendGrid.Helpers.Mail.EmailAddress> to = new List<SendGrid.Helpers.Mail.EmailAddress>();
+
+                for (int i = 0; i < 5; i++)
+                {
+                    to.Add(new SendGrid.Helpers.Mail.EmailAddress(SendMailSettings.Default.To,
+                                                                  SendMailSettings.Default.ToName + "_" + i));
+                }
+
+                mail.SetRecipientTo(to);
+
+                mail.SetMailDetail(SendMailSettings.Default.Subject + method, SendMailSettings.Default.Body);
+
+                Assert.AreEqual(mail.Send(), System.Net.HttpStatusCode.Accepted);
+            }
+
+            [TestMethod()]
+            public void SendMultipleWithAttachmentTest()
+            {
+                string method = "_SendMultipleWithAttachmentTest";
+
+                SendMail.UseSendGrid mail = new SendMail.UseSendGrid
+                {
+                    ApiKey = SendMailSettings.Default.SendGridApiKey
+                };
+
+                mail.SetSender(SendMailSettings.Default.From, SendMailSettings.Default.FromName);
+
+                List<SendGrid.Helpers.Mail.EmailAddress> to = new List<SendGrid.Helpers.Mail.EmailAddress>();
+
+                for (int i = 0; i < 5; i++)
+                {
+                    to.Add(new SendGrid.Helpers.Mail.EmailAddress(SendMailSettings.Default.To,
+                                                                  SendMailSettings.Default.ToName + "_" + i));
+                }
+
+                mail.SetRecipientTo(to);
+
+                mail.SetMailDetail(SendMailSettings.Default.Subject + method, SendMailSettings.Default.Body);
+
+                mail.SetAttachment(SendMailSettings.Default.AttachmentPath_1);
+
+                Assert.AreEqual(mail.Send(), System.Net.HttpStatusCode.Accepted);
+            }
+
+            [TestMethod()]
+            public void SendMultipleWithAttachmentsTest()
+            {
+                string method = "_SendMultipleWithAttachmentsTest";
+
+                SendMail.UseSendGrid mail = new SendMail.UseSendGrid
+                {
+                    ApiKey = SendMailSettings.Default.SendGridApiKey
+                };
+
+                mail.SetSender(SendMailSettings.Default.From, SendMailSettings.Default.FromName);
+
+                List<SendGrid.Helpers.Mail.EmailAddress> to = new List<SendGrid.Helpers.Mail.EmailAddress>();
+
+                for (int i = 0; i < 5; i++)
+                {
+                    to.Add(new SendGrid.Helpers.Mail.EmailAddress(SendMailSettings.Default.To,
+                                                                  SendMailSettings.Default.ToName + "_" + i));
+                }
+
+                mail.SetRecipientTo(to);
+
+                mail.SetMailDetail(SendMailSettings.Default.Subject + method, SendMailSettings.Default.Body);
+
+                List<string> attachments = new List<string>
+                {
+                    SendMailSettings.Default.AttachmentPath_1,
+                    SendMailSettings.Default.AttachmentPath_2,
+                    SendMailSettings.Default.AttachmentPath_3
+                };
+
+                mail.SetAttachment(attachments);
+
+                Assert.AreEqual(mail.Send(), System.Net.HttpStatusCode.Accepted);
+            }
         }
 
+
+        [TestClass()]
+        public class UseSmtp
+        {
+            [TestMethod()]
+            public void SendSingleWithAttachmentTest()
+            {
+                string method = "_SendSingleTest";
+
+                SendMail.UseSmtp mail = new SendMail.UseSmtp();
+                mail.SetServerDetail(SendMailSettings.Default.SmtpServer, SendMailSettings.Default.SmtpPort);
+                mail.SetSender(SendMailSettings.Default.From, SendMailSettings.Default.FromName);
+                mail.SetRecipientTo(SendMailSettings.Default.To, SendMailSettings.Default.ToName);
+                mail.SetRecipientCc(SendMailSettings.Default.Cc, SendMailSettings.Default.CcName);
+                mail.SetRecipientBcc(SendMailSettings.Default.Bcc, SendMailSettings.Default.BccName);
+                mail.SetAttachments(SendMailSettings.Default.AttachmentPath_1);
+                mail.SetMailDetail(SendMailSettings.Default.Subject + method, SendMailSettings.Default.Body);
+                mail.SetNotify(System.Net.Mail.DeliveryNotificationOptions.None);
+                mail.Send();
+                mail.Dispose();
+                Assert.AreEqual(true, true);
+            }
+
+            [TestMethod()]
+            public void SendSingleWithAttachmentsTest()
+            {
+                string method = "_SendSingleWithAttachmentsTest";
+
+                SendMail.UseSmtp mail = new SendMail.UseSmtp();
+                mail.SetServerDetail(SendMailSettings.Default.SmtpServer, SendMailSettings.Default.SmtpPort);
+                mail.SetSender(SendMailSettings.Default.From, SendMailSettings.Default.FromName);
+                mail.SetRecipientTo(SendMailSettings.Default.To, SendMailSettings.Default.ToName);
+                mail.SetRecipientCc(SendMailSettings.Default.Cc, SendMailSettings.Default.CcName);
+                mail.SetRecipientBcc(SendMailSettings.Default.Bcc, SendMailSettings.Default.BccName);
+                mail.SetAttachments(SendMailSettings.Default.AttachmentPath_1);
+                mail.SetAttachments(SendMailSettings.Default.AttachmentPath_2);
+                mail.SetAttachments(SendMailSettings.Default.AttachmentPath_3);
+                mail.SetMailDetail(SendMailSettings.Default.Subject + method, SendMailSettings.Default.Body);
+                mail.SetNotify(System.Net.Mail.DeliveryNotificationOptions.None);
+                mail.Send();
+                mail.Dispose();
+                Assert.AreEqual(true, true);
+            }
+
+            [TestMethod()]
+            public void SendMultipleWithAttachmentTest()
+            {
+                string method = "_SendMultipleWithAttachmentTest";
+
+                SendMail.UseSmtp mail = new SendMail.UseSmtp();
+                mail.SetServerDetail(SendMailSettings.Default.SmtpServer, SendMailSettings.Default.SmtpPort);
+                mail.SetSender(SendMailSettings.Default.From, SendMailSettings.Default.FromName);
+                string[,] recipientTo = new string[3, 2];
+                for (int i = 0; i < 3; i++)
+                {
+                    recipientTo[i, 0] = SendMailSettings.Default.To;
+                    recipientTo[i, 1] = SendMailSettings.Default.ToName + "_" + i;
+                }
+                mail.SetRecipientTo(recipientTo);
+                mail.SetRecipientCc(SendMailSettings.Default.Cc, SendMailSettings.Default.CcName);
+                mail.SetRecipientBcc(SendMailSettings.Default.Bcc, SendMailSettings.Default.BccName);
+                mail.SetAttachments(SendMailSettings.Default.AttachmentPath_1);
+                mail.SetMailDetail(SendMailSettings.Default.Subject + method, SendMailSettings.Default.Body);
+                mail.SetNotify(System.Net.Mail.DeliveryNotificationOptions.None);
+                mail.Send();
+                mail.Dispose();
+                Assert.AreEqual(true, true);
+            }
+
+            [TestMethod()]
+            public void SendMultipleWithAttachmentsTest()
+            {
+                string method = "_SendMultipleWithAttachmentTest";
+
+                SendMail.UseSmtp mail = new SendMail.UseSmtp();
+                mail.SetServerDetail(SendMailSettings.Default.SmtpServer, SendMailSettings.Default.SmtpPort);
+                mail.SetSender(SendMailSettings.Default.From, SendMailSettings.Default.FromName);
+                string[,] recipientTo = new string[3,2];
+                for (int i = 0; i < 3; i++)
+                {
+                    recipientTo[i, 0] = SendMailSettings.Default.To;
+                    recipientTo[i, 1] = SendMailSettings.Default.ToName + "_" + i;                        
+                }
+                mail.SetRecipientTo(recipientTo);
+                mail.SetRecipientCc(SendMailSettings.Default.Cc, SendMailSettings.Default.CcName);
+                mail.SetRecipientBcc(SendMailSettings.Default.Bcc, SendMailSettings.Default.BccName);
+                mail.SetAttachments(SendMailSettings.Default.AttachmentPath_1);
+                mail.SetAttachments(SendMailSettings.Default.AttachmentPath_2);
+                mail.SetAttachments(SendMailSettings.Default.AttachmentPath_3);
+                mail.SetMailDetail(SendMailSettings.Default.Subject + method, SendMailSettings.Default.Body);
+                mail.SetNotify(System.Net.Mail.DeliveryNotificationOptions.None);
+                mail.Send();
+                mail.Dispose();
+                Assert.AreEqual(true, true);
+            }
+        }
     }
 }

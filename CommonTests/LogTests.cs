@@ -12,10 +12,10 @@ namespace Common.Tests
         public void OutputTest()
         {
             Log.Output("test",
-                       Settings.Default.LogFilePath,
-                       Settings.Default.LogFileName);
+                       LogSettings.Default.LogFilePath,
+                       LogSettings.Default.LogFileName);
 
-            Assert.AreEqual(true,File.Exists(Settings.Default.LogFilePath + "\\" + Settings.Default.LogFileName));
+            Assert.AreEqual(true,File.Exists(LogSettings.Default.LogFilePath + "\\" + LogSettings.Default.LogFileName));
         }
 
         [TestMethod()]
@@ -29,11 +29,11 @@ namespace Common.Tests
             catch (Exception ex)
             {
                 Log.ExceptionOutput(ex,
-                                    Settings.Default.ExFilePath,
-                                    Settings.Default.ExFileName);
+                                    LogSettings.Default.ExFilePath,
+                                    LogSettings.Default.ExFileName);
             }
 
-            Assert.AreEqual(true, File.Exists(Settings.Default.ExFilePath + "\\" + Settings.Default.ExFileName));
+            Assert.AreEqual(true, File.Exists(LogSettings.Default.ExFilePath + "\\" + LogSettings.Default.ExFileName));
         }
     }
 }

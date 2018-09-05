@@ -68,11 +68,11 @@ namespace Common
                 MailMessage.Attachments.Add(attachment);
             }
 
-            public void SetAttachments(string[] array)
+            public void SetAttachments(List<string> list)
             {
-                for (int i = 0; i < array.GetLength(0); i++)
+                foreach (var item in list)
                 {
-                    System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(array[i]);
+                    System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(item);
                     MailMessage.Attachments.Add(attachment);
                 }
             }
@@ -118,45 +118,92 @@ namespace Common
             }
         }
 
+        /// <summary>
+        /// SendGrid
+        /// </summary>
         public class UseSendGrid{
-
+            #region Property
+            /// <summary>
+            /// SendGrid API Key
+            /// </summary>
             public string ApiKey { get; set; }
+
+            /// <summary>
+            /// Sender mail address
+            /// </summary>
             public EmailAddress From { get; set; }
+
+            /// <summary>
+            /// Recipient mail address
+            /// </summary>
             public EmailAddress To { get; set; }
+
+            /// <summary>
+            /// Recipient mail address(multiple)
+            /// </summary>
             public List<EmailAddress> ToMultiple { get; set; }
+
+            /// <summary>
+            /// Attachment file path
+            /// </summary>
             public string Attachment { get; set; }
-            public List<SendGrid.Helpers.Mail.Attachment> Attachments { get; set; }
+
+            /// <summary>
+            /// Attachment file path(multiple)
+            /// </summary>
+            public List<string> Attachments { get; set; }
+
+            /// <summary>
+            /// Mail subject
+            /// </summary>
             public string Subject { get; set; }
+
+            /// <summary>
+            /// Mail body(plain)
+            /// </summary>
             public string PlainTextContent { get; set; }
+
+            /// <summary>
+            /// Mail body(html)
+            /// </summary>
             public string HtmlContent { get; set; }
+            #endregion
 
-
+            #region Method
+            /// <summary>
+            /// Set sender detail
+            /// </summary>
+            /// <param name="senderAddress"></param>
+            /// <param name="senderName"></param>
             public void SetSender(string senderAddress, string senderName = "")
             {
                 From = new EmailAddress(senderAddress, senderName);
             }
 
+            /// <summary>
+            /// Set recipient detail
+            /// </summary>
+            /// <param name="recipientAddress"></param>
+            /// <param name="recipientName"></param>
             public void SetRecipientTo(string recipientAddress, string recipientName = "")
             {
                 To = new EmailAddress(recipientAddress, recipientName);
             }
 
+            /// <summary>
+            /// Set recipient detail(multiple)
+            /// </summary>
+            /// <param name="emailAddresses"></param>
             public void SetRecipientTo(List<EmailAddress> emailAddresses)
             {
                 ToMultiple = emailAddresses;
             }
 
-            public void SetAttachment(string attachment)
-            {
-                Attachment = attachment;
-            }
-
-            public void SetAttachment(List<SendGrid.Helpers.Mail.Attachment> attachment)
-            {
-                Attachments = attachment;
-            }
-
-
+            /// <summary>
+            /// Set mail detail
+            /// </summary>
+            /// <param name="subject"></param>
+            /// <param name="body"></param>
             public void SetMailDetail(string subject, string body)
             {
                 Subject = subject;
@@ -164,20 +211,55 @@ namespace Common
                 HtmlContent = body;
             }
 
-            public HttpStatusCode Send()
+            /// <summary>
+            /// Set attachment
+            /// </summary>
+            /// <param name="emailAddresses"></param>
+            public void SetAttachment(string attachment)
             {
-                var task = Execute();
-                return task.Result;
-
+                Attachment = attachment;
             }
 
+            /// <summary>
+            /// Set attachment(multiple)
+            /// </summary>
+            /// <param name="emailAddresses"></param>
+            public void SetAttachment(List<string> attachment)
+            {
+                Attachments = attachment;
+            }
+
+            /// <summary>
+            /// Mail send
+            /// </summary>
+            /// <returns></returns>
+            public HttpStatusCode Send()
+            {
+                if ((From == null) && (To == null && ToMultiple == null))
+                {
+                    return HttpStatusCode.NoContent;
+                }
+
+                var task = Execute();
+                return task.Result;
+            }
+
+            public string AddAttachment(string attachment)
+            {
+                var bytes = System.IO.File.ReadAllBytes(attachment);
+                var file = Convert.ToBase64String(bytes);
+                return file;
+            }
+
+            /// <summary>
+            /// Mail send execute
+            /// </summary>
+            /// <returns></returns>
             async Task<HttpStatusCode> Execute()
             {
                 SendGridClient client = new SendGridClient(ApiKey);
-
                 SendGridMessage msg;
-               
-                
+
                 if (ToMultiple != null)
                 {
                     msg = MailHelper.CreateSingleEmailToMultipleRecipients(From, ToMultiple, Subject, PlainTextContent, HtmlContent);
@@ -187,20 +269,29 @@ namespace Common
                     msg = MailHelper.CreateSingleEmail(From, To, Subject, PlainTextContent, HtmlContent);
                 }
 
-                if (Attachment!=null)
+                if (Attachment != null)
                 {
-                    msg.AddAttachment(Attachment,"");
+                    if (System.IO.File.Exists(Attachment))
+                    {
+                        msg.AddAttachment(System.IO.Path.GetFileName(Attachment), AddAttachment(Attachment));
+                    }
                 }
-
-                if (Attachments!=null)
+                else if (Attachments != null)
                 {
-                    msg.AddAttachments(Attachments);
+                    foreach (var attachment in Attachments)
+                    {
+                        if (System.IO.File.Exists(attachment))
+                        {
+                            msg.AddAttachment(System.IO.Path.GetFileName(attachment), AddAttachment(attachment));
+                        }
+                    }
                 }
 
                 var response = await client.SendEmailAsync(msg);
 
                 return response.StatusCode;
             }
+            #endregion
         }
     }
 }

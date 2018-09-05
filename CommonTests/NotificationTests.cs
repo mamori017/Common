@@ -14,8 +14,8 @@ namespace Common.Tests
             {
                 Notification.ShowNotify("test1", 
                                         "test2", 
-                                        Settings.Default.NotificationAppID,
-                                        Settings.Default.NotificationIconPath);
+                                        NotificationSettings.Default.NotificationAppID,
+                                        NotificationSettings.Default.NotificationIconPath);
 
                 Assert.IsTrue(true);
             }
