@@ -14,9 +14,9 @@ Class library of me, by me, for me. Maybe useless for others.
 
 This is "Kuso".
 
-## Requirement
+## Detail
 
-![20180731120000](https://cacoo.com/diagrams/hNLPmhZ3hvlOs9tD-43B31.png)
+![20190113001](https://cacoo.com/diagrams/GoxyZBkyILCBEILi-85CE6.png)
 
 ## Licence
 
