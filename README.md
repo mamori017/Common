@@ -18,6 +18,10 @@ This is "Kuso".
 
 ![20190113001](https://cacoo.com/diagrams/GoxyZBkyILCBEILi-85CE6.png)
 
+My C#, Visual Basic repository refer to This repository.(Correspond not yet.)
+
+Some repositories refer to this repository when build on Appveyor.
+
 ## Licence
 
 [MIT](https://github.com/mamori017/Common/blob/master/LICENSE)
