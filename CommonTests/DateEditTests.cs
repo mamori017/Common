@@ -59,6 +59,12 @@ namespace Common.Tests
             Assert.AreEqual(eraName, DateEdit.GetJapaneseEraName(1989, 1, 8));
             Assert.AreEqual(eraName, DateEdit.GetJapaneseEraName(2019, 4, 30));
             Assert.AreNotEqual(eraName, DateEdit.GetJapaneseEraName(2019, 5, 1));
+
+            eraName = "令和";
+            Assert.AreNotEqual(eraName, DateEdit.GetJapaneseEraName(1989, 1, 7));
+            Assert.AreNotEqual(eraName, DateEdit.GetJapaneseEraName(1989, 1, 8));
+            Assert.AreNotEqual(eraName, DateEdit.GetJapaneseEraName(2019, 4, 30));
+            Assert.AreEqual(eraName, DateEdit.GetJapaneseEraName(2019, 5, 1));
         }
 
         [TestMethod()]

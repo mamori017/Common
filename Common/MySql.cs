@@ -65,7 +65,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
         public bool RollBack()
@@ -84,7 +84,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
         public bool Commit()
@@ -103,7 +103,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
         public bool Disconnect()
@@ -118,7 +118,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -138,7 +138,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -155,7 +155,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -180,7 +180,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
     }

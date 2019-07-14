@@ -19,14 +19,7 @@ namespace Common
 
                 if (parseRet)
                 {
-                    if(btnTag == 1)
-                    {
-                        checkState = true;
-                    }
-                    else
-                    {
-                        checkState = false;
-                    }
+                    checkState = btnTag == 1 ? true : false;
                 }
                 else
                 {
@@ -43,7 +36,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -115,7 +108,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -139,7 +132,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -174,7 +167,7 @@ namespace Common
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             finally
             {

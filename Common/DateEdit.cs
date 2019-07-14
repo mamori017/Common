@@ -37,20 +37,10 @@ namespace Common
 
         public static string GetJapaneseWeekday(int year, int month, int day, bool shortest = false)
         {
-            string ret = "";
-
             DateTime dateTime = new DateTime(year, month, day);
             CultureInfo cultureInfo = new CultureInfo("ja-Jp");
 
-            if (shortest)
-            {
-                ret = cultureInfo.DateTimeFormat.GetShortestDayName(dateTime.DayOfWeek);
-            }
-            else
-            {
-                ret = cultureInfo.DateTimeFormat.GetDayName(dateTime.DayOfWeek);
-            }
-            return ret;
+            return shortest ? cultureInfo.DateTimeFormat.GetShortestDayName(dateTime.DayOfWeek) : cultureInfo.DateTimeFormat.GetDayName(dateTime.DayOfWeek);
         }
 
         public static DateTime GetDaysInMonth(int year, int month, int day)
