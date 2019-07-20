@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CommonTests.Properties" GeneratedClassName="JsonSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="JsonUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://weather.livedoor.com/forecast/webservice/json/v1?city=400040</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

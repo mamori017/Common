@@ -37,49 +37,25 @@ namespace Common
 
         public static bool CreateTextFile(string filePath, string fileName, string outputString, bool append = true, EncodeType encode = EncodeType.utf8)
         {
-
-            String outputFilePath = "";
-            Encoding objEncoding = null;
-            StreamWriter objWriter = null;
-
             try
             {
                 DirectoryCheck(filePath, true);
 
-                if (filePath.Substring(filePath.Length - 1) != "\\")
-                {
-                    outputFilePath = filePath + "\\" + fileName;
-                }
-                else
-                {
-                    outputFilePath = filePath + fileName;
-                }
+                string outputFilePath = filePath.Substring(filePath.Length - 1) != "\\" ? filePath + "\\" + fileName : filePath + fileName;
 
-                if (encode == EncodeType.sjis)
+                Encoding objEncoding = encode == EncodeType.sjis ? Encoding.GetEncoding(932) : Encoding.UTF8;
+
+                using (var objWriter = new StreamWriter(outputFilePath, append, objEncoding))
                 {
-                    objEncoding = Encoding.GetEncoding(932);
+                    objWriter.Write(outputString);
+                    objWriter.Close();
                 }
-                else
-                {
-                    objEncoding = Encoding.UTF8;
-                }
-
-                objWriter = new StreamWriter(outputFilePath, append, objEncoding);
-
-                objWriter.Write(outputString);
-
-                objWriter.Close();
 
                 return true;
             }
             catch (Exception)
             {
                 throw;
-            }
-            finally
-            {
-                objEncoding = null;
-                objWriter = null;
             }
         }
 

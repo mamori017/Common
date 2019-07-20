@@ -12,16 +12,27 @@
 
 Class library of me, by me, for me. Maybe useless for others.
 
-This is "Kuso".
-
 ## Detail
 
 ![20190113001](https://cacoo.com/diagrams/GoxyZBkyILCBEILi-85CE6.png)
 
-My C#, Visual Basic repository refer to This repository.(Correspond not yet.)
+My C#, Visual Basic repository refer to this repository.
 
 Some repositories refer to this repository when build on Appveyor.
 
+## Build
+
+- .NET Framework 4.7.2
+
+## References
+
+- [FlickrNet](https://www.nuget.org/packages/FlickrNet/4.0.4-alpha)
+- [ADO.NET Driver for MySQL (Connector/NET)](https://dev.mysql.com/downloads/connector/net/)
+- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/)
+- [SendGrid](https://www.nuget.org/packages/Sendgrid/)
+- Windows.winmd
+  - (C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral\Annotated\Windows.winmd)
+   
 ## Licence
 
 [MIT](https://github.com/mamori017/Common/blob/master/LICENSE)

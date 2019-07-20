@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CommonTests.Properties" GeneratedClassName="SendMailSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SendGridApiKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SmtpServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SmtpPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">25</Value>
+    </Setting>
+    <Setting Name="Subject" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Test Subject</Value>
+    </Setting>
+    <Setting Name="Body" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Test Body</Value>
+    </Setting>
+    <Setting Name="From" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FromName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">From</Value>
+    </Setting>
+    <Setting Name="To" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ToName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">To</Value>
+    </Setting>
+    <Setting Name="Cc" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CcName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Cc</Value>
+    </Setting>
+    <Setting Name="Bcc" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BccName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Bcc</Value>
+    </Setting>
+    <Setting Name="AttachmentPath_1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\Attachment\Attachment.txt</Value>
+    </Setting>
+    <Setting Name="AttachmentPath_2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\Attachment\Attachment.md</Value>
+    </Setting>
+    <Setting Name="AttachmentPath_3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\Attachment\Attachment.cs</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

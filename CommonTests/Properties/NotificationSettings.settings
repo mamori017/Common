@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CommonTests.Properties" GeneratedClassName="NotificationSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="NotificationAppID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27}\WindowsPowerShell\v1.0\powershell.exe</Value>
+    </Setting>
+    <Setting Name="NotificationIconPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\img\favicon.ico</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

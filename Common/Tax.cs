@@ -54,14 +54,7 @@ namespace Common
         {
             if (TargetDate >= NewTaxStartDate)
             {
-                if (itemType == ItemType.FoodWithEatOut || itemType == ItemType.Alchol || itemType == ItemType.Other)
-                {
-                    ApplyTax = NewTax;
-                }
-                else
-                {
-                    ApplyTax = OldTax;
-                }
+                ApplyTax = (itemType == ItemType.FoodWithEatOut || itemType == ItemType.Alchol || itemType == ItemType.Other) ? NewTax : ApplyTax;
             }
             else
             {
@@ -80,14 +73,7 @@ namespace Common
         {
             if (TargetDate >= NewTaxStartDate)
             {
-                if (issuePerWeek >= 2)
-                {
-                    ApplyTax = OldTax;
-                }
-                else
-                {
-                    ApplyTax = NewTax;
-                }
+                ApplyTax = issuePerWeek >= 2 ? OldTax : NewTax;
             }
             else
             {
