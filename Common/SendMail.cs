@@ -15,6 +15,7 @@ namespace Common
     public class SendMail
     {
         public class UseSmtp {
+
             SmtpClient SmtpClient = new SmtpClient();
             MailMessage MailMessage = new MailMessage();
 
@@ -257,7 +258,7 @@ namespace Common
             /// <returns></returns>
             async Task<HttpStatusCode> Execute()
             {
-                SendGridClient client = new SendGridClient(ApiKey);
+                var client = new SendGridClient(ApiKey);
                 SendGridMessage msg;
 
                 if (ToMultiple != null)

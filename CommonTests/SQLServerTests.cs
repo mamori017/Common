@@ -145,35 +145,6 @@ namespace Common.Tests
         }
 
         [TestMethod()]
-        public void ChangeDataTest()
-        {
-            SQLServer objDB = null;
-            Random random = new Random();
-
-            try
-            {
-                objDB = TestEnvJudge();
-                if (objDB != null)
-                {
-                    if (objDB.Connect())
-                    {
-                        int ret = objDB.ChangeData("INSERT INTO inspection.dbo.Test_143336483 VALUES('" + random.Next() + "','A','B','C')");
-                        Assert.AreEqual(ret, 1);
-                    }
-                }
-            }
-            finally
-            {
-                if (objDB.Connect())
-                {
-                    objDB.Disconnect();
-                }
-                objDB = null;
-                random = null;
-            }
-        }
-
-        [TestMethod()]
         public void CreateAndDropTableTest()
         {
             SQLServer objDB = null;
@@ -186,10 +157,10 @@ namespace Common.Tests
                 {
                     if (objDB.Connect())
                     {
-                        bool ret = objDB.CreateAndDropTable("CREATE TABLE Test_" +
+                        int ret = objDB.ExecuteNonQuery("CREATE TABLE Test_" +
                                                    DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond +
                                                    " (id int NOT NULL PRIMARY KEY, col_1 nvarchar(10) NULL, col_2 nvarchar(10) NULL, col_3 nvarchar(10) NULL);");
-                        Assert.AreEqual(true, ret);
+                        Assert.AreEqual(1, ret);
                     }
                 }
             }
@@ -217,7 +188,7 @@ namespace Common.Tests
                 {
                     if (objDB.Connect())
                     {
-                        DataTable dataTable = objDB.GetData("SELECT * FROM get_test");
+                        DataTable dataTable = objDB.ExecuteReader("SELECT * FROM get_test");
                     }
                 }
             }
@@ -244,7 +215,7 @@ namespace Common.Tests
                     if (objDB.Connect())
                     {
                         objDB.BeginTrans();
-                        objDB.ChangeData("insert into get_test values (NEXT VALUE FOR get_test_sequence,'','',SYSDATETIME(),SYSDATETIMEOFFSET())");
+                        objDB.ExecuteNonQuery("insert into get_test values (NEXT VALUE FOR get_test_sequence,'','',SYSDATETIME(),SYSDATETIMEOFFSET())");
                         Assert.AreNotEqual(true, objDB.GetTableLockInfo("get_test"));
                         objDB.RollBack();
                     }

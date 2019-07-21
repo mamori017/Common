@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Linq;
 
 namespace Common
 {
@@ -7,30 +7,17 @@ namespace Common
     {
         public static string[] ArraySortWithExceptDuplication(String[] strArray)
         {
-            string[] ret = null;
-
             try
             {
                 Array.Sort(strArray);
 
-                ArrayList arrayList = new ArrayList(strArray.Length);
-
-                foreach (string i in strArray)
-                {
-                    if (!arrayList.Contains(i) && i != null)
-                    {
-                        arrayList.Add(i);
-                    }
-                }
-
-                ret = (string[])arrayList.ToArray(typeof(string));
-
-                return ret;
+                return (string[])strArray.Distinct();
             }
             catch (Exception)
             {
                 throw;
             }
+
         }
     }
 }

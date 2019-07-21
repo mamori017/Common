@@ -14,7 +14,7 @@ namespace Common
 
         public static void ExceptionOutput(Exception ex, String filePath, String fileName)
         {
-            String outputDetail = "";
+            var outputDetail = "";
 
             outputDetail = ex.Message + "\n" + 
                            ex.InnerException + "\n" + 

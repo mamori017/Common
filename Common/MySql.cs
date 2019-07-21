@@ -43,7 +43,7 @@ namespace Common
 
         private String SqlConString()
         {
-            String ret = string.Format("Server={0};Database={1};Uid={2};Pwd={3}",
+            var ret = string.Format("Server={0};Database={1};Uid={2};Pwd={3}",
                                         ServerName, Database, UserId, Password);
             return ret;
         }
@@ -63,7 +63,7 @@ namespace Common
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -82,7 +82,7 @@ namespace Common
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -101,7 +101,7 @@ namespace Common
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -116,7 +116,7 @@ namespace Common
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -124,19 +124,18 @@ namespace Common
 
         public DataTable GetData(string sql)
         { 
-            MySqlDataAdapter reader = null;
             DataTable ret = null;
 
             try
             {
                 if (MySqlConnection.State == ConnectionState.Open)
                 {
-                    reader = new MySqlDataAdapter(sql, MySqlConnection);
+                    var reader = new MySqlDataAdapter(sql, MySqlConnection);
                     ret = new DataTable();
                 }
                 return ret;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -144,7 +143,8 @@ namespace Common
 
         public int ChangeData(String sql)
         {
-            int retCnt = 0;
+            var retCnt = 0;
+
             try
             {
                 if (MySqlConnection.State == ConnectionState.Open)
@@ -153,7 +153,7 @@ namespace Common
                 }
                 return retCnt;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -178,7 +178,7 @@ namespace Common
                 }
                 return false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

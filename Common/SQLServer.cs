@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace Common
 {
@@ -15,7 +16,14 @@ namespace Common
         public string Password { get; private set; }
         public bool Disposed { get; set; }
 
-        public SQLServer(String SqlServerName, String SqlServerCatalog, String SqlServerUser, String SqlServerPassword)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="SqlServerName">SQLServer</param>
+        /// <param name="SqlServerCatalog">Catalog</param>
+        /// <param name="SqlServerUser">User Name</param>
+        /// <param name="SqlServerPassword">Password</param>
+        public SQLServer(string SqlServerName, string SqlServerCatalog, string SqlServerUser, string SqlServerPassword)
         {
             ServerName = SqlServerName;
             Catalog = SqlServerCatalog;
@@ -23,6 +31,10 @@ namespace Common
             Password = SqlServerPassword;
         }
 
+        /// <summary>
+        /// Database Connect
+        /// </summary>
+        /// <returns>True:Success/False:Fail</returns>
         public bool Connect()
         {
             try
@@ -41,15 +53,19 @@ namespace Common
             }
         }
 
-        private String SqlConString()
+        /// <summary>
+        /// Database Connection String
+        /// </summary>
+        /// <returns>Connection String</returns>
+        private string SqlConString()
         {
-            String ret = "Data Source =" + ServerName +
-                         ";Initial Catalog=" + Catalog +
-                         ";User ID=" + UserId +
-                         ";Password=" + Password;
-            return ret;
+            return string.Format("Data Source={0}; Initial Catalog={1}; User ID={2}; Password={3}", ServerName, Catalog, UserId, Password); ;
         }
 
+        /// <summary>
+        /// Transaction Start
+        /// </summary>
+        /// <returns>True:Success/False:Fail</returns>
         public bool BeginTrans()
         {
             try
@@ -65,12 +81,16 @@ namespace Common
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
         }
 
+        /// <summary>
+        /// Rollback
+        /// </summary>
+        /// <returns>True:Success/False:Fail</returns>
         public bool RollBack()
         {
             try
@@ -85,12 +105,16 @@ namespace Common
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
         }
 
+        /// <summary>
+        /// Commit
+        /// </summary>
+        /// <returns>True:Success/False:Fail</returns>
         public bool Commit()
         {
             try
@@ -105,12 +129,16 @@ namespace Common
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
         }
 
+        /// <summary>
+        /// Disconnect
+        /// </summary>
+        /// <returns>True:Success/False:Fail</returns>
         public bool Disconnect()
         {
             try
@@ -121,22 +149,27 @@ namespace Common
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
         }
 
-        public DataTable GetData(string sql)
+        /// <summary>
+        /// ExecuteReader(Get)
+        /// </summary>
+        /// <param name="sql">Query</param>
+        /// <returns>DataTable</returns>
+        public DataTable ExecuteReader(string sql)
         {
-            SqlDataReader reader = null;
             DataTable ret = null;
+
             try
             {
                 if (Conn.State == ConnectionState.Open)
                 {
                     Cmd.CommandText = sql;
-                    reader = Cmd.ExecuteReader();
+                    SqlDataReader reader = Cmd.ExecuteReader();
                     if (reader != null)
                     {
                         ret = new DataTable();
@@ -145,15 +178,21 @@ namespace Common
                 }
                 return ret;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
         }
 
-        public int ChangeData(String sql)
+        /// <summary>
+        /// ExecuteNonQuery(Create/Delete/Change)
+        /// </summary>
+        /// <param name="sql">Query</param>
+        /// <returns>Target count</returns>
+        public int ExecuteNonQuery(string sql)
         {
-            int retCnt = 0;
+            var retCnt = 0;
+
             try
             {
                 if (Conn.State == ConnectionState.Open)
@@ -163,56 +202,32 @@ namespace Common
                 }
                 return retCnt;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
         }
 
-        public bool CreateAndDropTable(String sql)
-        {
-            try
-            {
-                if (Conn.State == ConnectionState.Open)
-                {
-                    try
-                    {
-                        Cmd.CommandText = sql;
-                        Cmd.ExecuteNonQuery();
-                    }
-                    catch (Exception)
-                    {
-                        throw;
-                    }
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
+        /// <summary>
+        /// Get table lock info
+        /// </summary>
+        /// <param name="objectName"></param>
+        /// <returns></returns>
         public bool GetTableLockInfo(string objectName)
         {
-            SqlDataReader reader = null;
-            DataTable dataTable = null;
-            String sql = "";
-            bool ret = false;
+            var ret = false;
 
             try
             {
                 if (Conn.State == ConnectionState.Open)
                 {
-                    sql = Query.GetLockInfoQuery();
-                    Cmd.CommandText = sql;
+                    Cmd.CommandText = Query.GetLockInfoQuery();
 
-                    reader = Cmd.ExecuteReader();
+                    SqlDataReader reader = Cmd.ExecuteReader();
 
                     if (reader != null)
                     {
-                        dataTable = new DataTable();
+                        var dataTable = new DataTable();
                         dataTable.Load(reader);
 
                         for (int i = 0; i < dataTable.Rows.Count - 1; i++)
@@ -228,15 +243,20 @@ namespace Common
                 }
                 return ret;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
         }
 
-        private static string SetLockType(String type)
+        /// <summary>
+        /// Get lock range
+        /// </summary>
+        /// <param name="type">type</param>
+        /// <returns>Lock range</returns>
+        private static string GetLockRange(string type)
         {
-            string ret = "";
+            var ret = "";
 
             switch (type)
             {
@@ -261,9 +281,14 @@ namespace Common
             return ret;
         }
 
-        private static string SetLockRequest(String type)
+        /// <summary>
+        /// Get lock state
+        /// </summary>
+        /// <param name="type">type</param>
+        /// <returns>Lock state</returns>
+        private static string GetLockState(string type)
         {
-            string ret = "";
+            var ret = "";
 
             switch (type)
             {
@@ -300,62 +325,57 @@ namespace Common
             return ret;
         }
 
-        private static string SetLockRequestStatus(String type)
-        {
-            string ret = "";
-
-            switch (type)
-            {
-                case "GRANT":
-                    ret = "GRANT";
-                    break;
-                case "WAIT":
-                    ret = "WAIT";
-                    break;
-                default:
-                    break;
-            }
-            return ret;
-        }
-
-
+        /// <summary>
+        /// Query
+        /// </summary>
         private static class Query
         {
+            /// <summary>
+            /// Lock state query
+            /// </summary>
+            /// <returns>Query</returns>
             public static string GetLockInfoQuery()
             {
-                String sql = "";
+                try
+                {
+                    var sql = new StringBuilder();
 
-                sql += "\n" + "SELECT";
-                sql += "\n" + "  resource_type AS type";
-                sql += "\n" + " ,resource_associated_entity_id as entity_id";
-                sql += "\n" + " ,(CASE WHEN resource_type = 'OBJECT' THEN";
-                sql += "\n" + "             OBJECT_NAME(resource_associated_entity_id)";
-                sql += "\n" + "        ELSE";
-                sql += "\n" + "             (SELECT";
-                sql += "\n" + "                OBJECT_NAME(OBJECT_ID)";
-                sql += "\n" + "              FROM";
-                sql += "\n" + "                sys.partitions";
-                sql += "\n" + "              WHERE";
-                sql += "\n" + "                hobt_id = resource_associated_entity_id)";
-                sql += "\n" + "        END) AS object_name";
-                sql += "\n" + " ,request_mode";
-                sql += "\n" + " ,request_type";
-                sql += "\n" + " ,request_status";
-                sql += "\n" + " ,request_session_id AS Session_id";
-                sql += "\n" + " ,(SELECT";
-                sql += "\n" + "     hostname";
-                sql += "\n" + "   FROM";
-                sql += "\n" + "     sys.sysprocesses";
-                sql += "\n" + "   WHERE";
-                sql += "\n" + "     spid = request_session_id) AS ProcessName";
-                sql += "\n" + "FROM";
-                sql += "\n" + "  sys.dm_tran_locks";
-                sql += "\n" + "WHERE";
-                sql += "\n" + "  resource_type <> 'DATABASE'";
-                sql += "\n" + "ORDER BY";
-                sql += "\n" + "  request_session_id";
+                    sql.AppendLine("SELECT");
+                    sql.AppendLine("  resource_type AS type");
+                    sql.AppendLine(" ,resource_associated_entity_id as entity_id");
+                    sql.AppendLine(" ,(CASE WHEN resource_type = 'OBJECT' THEN");
+                    sql.AppendLine("             OBJECT_NAME(resource_associated_entity_id)");
+                    sql.AppendLine("        ELSE");
+                    sql.AppendLine("             (SELECT");
+                    sql.AppendLine("                OBJECT_NAME(OBJECT_ID)");
+                    sql.AppendLine("              FROM");
+                    sql.AppendLine("                sys.partitions");
+                    sql.AppendLine("              WHERE");
+                    sql.AppendLine("                hobt_id = resource_associated_entity_id)");
+                    sql.AppendLine("        END) AS object_name");
+                    sql.AppendLine(" ,request_mode");
+                    sql.AppendLine(" ,request_type");
+                    sql.AppendLine(" ,request_status");
+                    sql.AppendLine(" ,request_session_id AS Session_id");
+                    sql.AppendLine(" ,(SELECT");
+                    sql.AppendLine("     hostname");
+                    sql.AppendLine("   FROM");
+                    sql.AppendLine("     sys.sysprocesses");
+                    sql.AppendLine("   WHERE");
+                    sql.AppendLine("     spid = request_session_id) AS ProcessName");
+                    sql.AppendLine("FROM");
+                    sql.AppendLine("  sys.dm_tran_locks");
+                    sql.AppendLine("WHERE");
+                    sql.AppendLine("  resource_type <> 'DATABASE'");
+                    sql.AppendLine("ORDER BY");
+                    sql.AppendLine("  request_session_id");
 
-                return sql;
+                    return sql.ToString();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
         }
 

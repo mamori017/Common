@@ -61,13 +61,13 @@ namespace Common
 
         public DaylightSavingTimeInfo(string timeZoneId)
         {
-            List<string> timeZoneList = CreateTimeZoneList();
+            var timeZoneList = CreateTimeZoneList();
 
             if (!timeZoneList.Contains(timeZoneId)){
                 timeZoneId = TimeZoneInfo.Local.Id;
             }
 
-            TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+            var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
             
             GetInfo(timeZoneInfo);
 
@@ -77,7 +77,7 @@ namespace Common
             }
             else
             {
-                TimeZoneInfo.AdjustmentRule[] adjustments = timeZoneInfo.GetAdjustmentRules();
+                var adjustments = timeZoneInfo.GetAdjustmentRules();
 
                 if (adjustments.Length != 0)
                 {
@@ -88,7 +88,8 @@ namespace Common
 
         private List<string> CreateTimeZoneList()
         {
-            List<string> timeZoneList = new List<string>();
+            var timeZoneList = new List<string>();
+
             foreach (TimeZoneInfo timeZoneInfo in TimeZoneInfo.GetSystemTimeZones())
             {
                 timeZoneList.Add(timeZoneInfo.Id);
@@ -166,8 +167,8 @@ namespace Common
         public DateTime GetTransitionStartDateTime(int year)
         {
             DateTime transitionStartDate;
-            int dayCount = 0;
-            int weekDayCount = 0;
+            var dayCount = 0;
+            var weekDayCount = 0;
 
             if (TransitionStartIsFixedDateRule)
             {
@@ -205,8 +206,8 @@ namespace Common
         public DateTime GetTransitionEndDateTime(int year)
         {
             DateTime transitionEndDate;
-            int dayCount = 0;
-            int weekDayCount = 0;
+            var dayCount = 0;
+            var weekDayCount = 0;
 
             if (TransitionEndIsFixedDateRule)
             {
@@ -243,7 +244,7 @@ namespace Common
 
         public DateTime ConvertDstMoveForward(DateTime dateTime)
         {
-            DateTime ret = dateTime;
+            var ret = dateTime;
 
             if (dateTime.Kind != DateTimeKind.Utc) 
             {
@@ -257,7 +258,7 @@ namespace Common
 
         public DateTime ConvertDstMoveBack(DateTime dateTime)
         {
-            DateTime ret = dateTime;
+            var ret = dateTime;
 
             if (dateTime.Kind != DateTimeKind.Utc)
             {

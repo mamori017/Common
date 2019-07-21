@@ -7,53 +7,48 @@ namespace Common
     {
         public static DateTime GetWeekStartDate(DateTime targetDate)
         {
-                return targetDate.AddDays(-(int)targetDate.DayOfWeek);
+            return targetDate.AddDays(-(int)targetDate.DayOfWeek);
         }
 
         public static int GetWeekCount(DateTime startDate)
         {
-            int weekCount = 0;
-
-            weekCount = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(startDate,
+            return CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(startDate,
                                                                         CultureInfo.CurrentCulture.DateTimeFormat.CalendarWeekRule,
                                                                         CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek);
-
-            return weekCount;
         }
 
         public static string GetJapaneseEraName(int year, int month, int day)
         {
-            string ret = "";
-
-            DateTime dateTime = new DateTime(year, month, day);
-            CultureInfo cultureInfo = new CultureInfo("ja-Jp");
+            var dateTime = new DateTime(year, month, day);
+            var cultureInfo = new CultureInfo("ja-Jp");
 
             cultureInfo.DateTimeFormat.Calendar = new JapaneseCalendar();
 
-            ret = cultureInfo.DateTimeFormat.GetEraName(cultureInfo.DateTimeFormat.Calendar.GetEra(dateTime));
-
-            return ret;
+            return cultureInfo.DateTimeFormat.GetEraName(cultureInfo.DateTimeFormat.Calendar.GetEra(dateTime));
         }
 
         public static string GetJapaneseWeekday(int year, int month, int day, bool shortest = false)
         {
-            DateTime dateTime = new DateTime(year, month, day);
-            CultureInfo cultureInfo = new CultureInfo("ja-Jp");
+            var dateTime = new DateTime(year, month, day);
+            var cultureInfo = new CultureInfo("ja-Jp");
 
             return shortest ? cultureInfo.DateTimeFormat.GetShortestDayName(dateTime.DayOfWeek) : cultureInfo.DateTimeFormat.GetDayName(dateTime.DayOfWeek);
         }
 
         public static DateTime GetDaysInMonth(int year, int month, int day)
         {
-            DateTime dateTime = new DateTime(year, month, day);
-            int daysInMonth = DateTime.DaysInMonth(year, month);
+            // TODO: Test
+            //DateTime dateTime = new DateTime(year, month, day);
+            //int daysInMonth = DateTime.DaysInMonth(year, month);
 
-            return new DateTime(year, month, daysInMonth);
+            //return new DateTime(year, month, daysInMonth);
+
+            return new DateTime(year, month, DateTime.DaysInMonth(year, month));
         }
 
         public static DateTime NextWeekDay(int year, int month, int day, DayOfWeek dayOfWeek)
         {
-            DateTime dateTime = new DateTime(year, month, day);
+            var dateTime = new DateTime(year, month, day);
 
             int dayDiff = (int)dayOfWeek - (int)dateTime.DayOfWeek;
 

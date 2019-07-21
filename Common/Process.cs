@@ -8,7 +8,7 @@ namespace Common
     {
         public static void ExcludeMultipleStartUp(string strProductName)
         {
-            Mutex objMutex = new Mutex(false, strProductName);
+            var objMutex = new Mutex(false, strProductName);
 
             if (!objMutex.WaitOne(0, false))
             {

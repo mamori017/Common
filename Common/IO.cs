@@ -41,9 +41,9 @@ namespace Common
             {
                 DirectoryCheck(filePath, true);
 
-                string outputFilePath = filePath.Substring(filePath.Length - 1) != "\\" ? filePath + "\\" + fileName : filePath + fileName;
+                var outputFilePath = filePath.Substring(filePath.Length - 1) != "\\" ? filePath + "\\" + fileName : filePath + fileName;
 
-                Encoding objEncoding = encode == EncodeType.sjis ? Encoding.GetEncoding(932) : Encoding.UTF8;
+                var objEncoding = encode == EncodeType.sjis ? Encoding.GetEncoding(932) : Encoding.UTF8;
 
                 using (var objWriter = new StreamWriter(outputFilePath, append, objEncoding))
                 {

@@ -11,7 +11,7 @@ namespace Common
         {
             try
             {
-                string strJson = "";
+                var strJson = "";
                 try
                 {
                     strJson = new HttpClient().GetStringAsync(strUrl).Result;

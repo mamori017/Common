@@ -8,14 +8,12 @@ namespace Common
     {
         public static void ChangeCheckState(Object sender,DataGridView dataGridView, int cellPos = 0)
         {
-            Button btn = (Button)sender;
-            bool checkState = false;
-            bool parseRet = false;
-            int btnTag = 0;
+            var btn = (Button)sender;
+            bool checkState;
 
             try
             {
-                parseRet = int.TryParse(btn.Tag.ToString(), out btnTag);
+                bool parseRet = int.TryParse(btn.Tag.ToString(), out int btnTag);
 
                 if (parseRet)
                 {
@@ -34,7 +32,7 @@ namespace Common
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -67,8 +65,8 @@ namespace Common
 
         public static string[] GetCheckboxSelectValue(DataGridView dataGridView, int cellPos = 0)
         {
-            String[] strId = null;
-            int intCnt = 0;
+            string[] strId = null;
+            var intCnt = 0;
 
             try
             {
@@ -106,7 +104,7 @@ namespace Common
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -114,36 +112,27 @@ namespace Common
 
         public static void FilterViewChange(DataGridView dataGridView, String filterQuery)
         {
-            BindingSource objBind;
-            DataTable objData;
-
             try
             {
-                objData = (DataTable)dataGridView.DataSource;
+                DataTable objData = (DataTable)dataGridView.DataSource;
 
                 if(objData != null)
                 {
-                    objBind = new BindingSource
+                    var objBind = new BindingSource
                     {
                         DataSource = objData,
                         Filter = filterQuery   
                     };
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
-            }
-            finally
-            {
-                objBind = null;
-                objData = null;
             }
         }
 
         public static bool CreateDataGridView(DataTable objDataTable, DataGridView objDataGridView , bool vblnCheckFlg = false, int checkFlgOrdinal = 0)
         {
-            DataGridViewCheckBoxColumn objColumn = null;
             try
             {
                 if (objDataTable.Rows.Count > 0)
@@ -152,7 +141,7 @@ namespace Common
 
                     if(vblnCheckFlg == true)
                     {
-                        objColumn = (DataGridViewCheckBoxColumn)objDataGridView.Columns[checkFlgOrdinal]; 
+                        var objColumn = (DataGridViewCheckBoxColumn)objDataGridView.Columns[checkFlgOrdinal]; 
                     }
                     objDataGridView.DataSource = objDataTable;
                     ChangeReadOnlyCell(objDataGridView);
@@ -165,13 +154,9 @@ namespace Common
                 objDataGridView.Refresh();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
-            }
-            finally
-            {
-                objColumn = null;
             }
         }
     }
