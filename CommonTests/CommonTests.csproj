@@ -113,7 +113,6 @@
     </Compile>
     <Compile Include="SendMailTests.cs" />
     <Compile Include="SQLServerTests.cs" />
-    <Compile Include="MySqlTests.cs" />
     <Compile Include="TaxTests.cs" />
   </ItemGroup>
   <ItemGroup>
